@@ -43,6 +43,12 @@ Schemas are already defined in:
 
 The blog list and blog detail pages will then pull from Sanity.
 
+## 4.1 Production Behavior
+
+- Blog pages are configured as dynamic server-rendered routes.
+- New posts and edits appear in production without redeploying the Next.js app.
+- Ensure your production environment has correct Sanity env values.
+
 ## 5. Fallback Behavior
 
 If Sanity env vars are missing, the app uses placeholder blog posts from:
@@ -55,3 +61,4 @@ This keeps local and build environments stable.
 
 - next-sanity package is intentionally not used due Next 16 peer compatibility.
 - Frontend data fetch uses @sanity/client.
+- Sanity client uses fresh reads (CDN disabled) for immediate blog updates.

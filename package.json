@@ -7,6 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "env:use:local": "node scripts/use-dataset-env.mjs local",
+    "env:use:production": "node scripts/use-dataset-env.mjs production",
+    "dev:local": "npm run env:use:local && npm run dev",
+    "dev:production": "npm run env:use:production && npm run dev",
+    "studio:local": "npm run env:use:local && npm run sanity:dev",
+    "studio:production": "npm run env:use:production && npm run sanity:dev",
     "sanity:dev": "sanity dev",
     "sanity:build": "sanity build",
     "sanity:deploy": "sanity deploy"
@@ -18,7 +24,8 @@
     "next": "16.2.2",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "sanity": "^3.99.0"
+    "sanity": "^3.99.0",
+    "styled-components": "^6.3.12"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
