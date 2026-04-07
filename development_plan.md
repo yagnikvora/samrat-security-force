@@ -4,6 +4,12 @@ Execution model: strict phase order with limited parallel tracks to maximize qua
 
 Mobile-first quality gate: every feature and component update must ship with polished mobile behavior and be tested before acceptance.
 
+Validation execution policy (project-wide):
+- Small, isolated edits (single-section copy/style/icon updates) do not require automatic `lint` + `build` runs.
+- Medium/large or risky changes (shared components, routing, config/type contract changes, data fetching, dependencies, multi-file refactors) require both `lint` and production `build`.
+- Any cross-page or runtime-impacting change must run full validation before sign-off.
+- When skipping validation for small edits, record that it was intentionally skipped due to low-risk scope.
+
 Estimated total effort: 72 to 98 hours (single developer), excluding asset delays and content approval cycles.
 
 ## Phase timeline and estimates

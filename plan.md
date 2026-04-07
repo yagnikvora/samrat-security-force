@@ -7,6 +7,12 @@ Build a pixel-accurate, reusable multi-page marketing site in Next.js App Router
 - No feature is considered complete unless desktop and mobile behavior are both validated.
 - Every UI delivery must include responsive checks for navigation, spacing, touch targets, and readable typography.
 
+**Validation Execution Policy (Project-Wide)**
+- For small and isolated UI/content changes (for example: text copy updates, spacing tweaks, icon swaps in one component), do not run full `lint` + `build` by default.
+- For medium or high-impact changes (for example: shared components, routing, config shape/type changes, data layer changes, dependency updates, multi-file refactors), run both `lint` and production `build`.
+- Always run validation when a change can affect multiple pages, runtime behavior, or deployment safety.
+- If validation is skipped for a small change, note that it was intentionally skipped due to low-risk scope.
+
 **Steps**
 1. Phase 0 - Preflight and guardrails
 Validate Next.js 16 project behavior, lock environment assumptions, and finalize visual direction from provided references. This phase blocks all others.
@@ -66,7 +72,7 @@ Provide launch checklist and rollback-safe release sequence.
 - y:/Work/samrat-security-force/Website Design - Visual reference source for fidelity checks.
 
 **Verification**
-1. Run local quality gates: lint, type-check, production build, and route smoke tests for all public pages.
+1. Run local quality gates (`lint`, type-check, production `build`, and route smoke tests) for medium/high-impact or cross-cutting changes.
 2. Compare each implemented page against design screenshots for spacing, typography, color, component states, and responsive behavior.
 3. Validate blog flow end-to-end: create post in Sanity, publish, verify listing and detail rendering, verify cache/revalidation behavior.
 4. Validate contact flow end-to-end with test submissions and failure-path handling.

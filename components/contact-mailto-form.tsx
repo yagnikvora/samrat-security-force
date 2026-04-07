@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { FormEvent, useMemo, useState } from "react";
 import { siteConfig } from "@/lib/site-config";
 
@@ -21,21 +22,41 @@ export function ContactMailtoForm() {
   const [formState, setFormState] = useState<FormState>(initialState);
   const [formError, setFormError] = useState<string>("");
   const contactForm = siteConfig.contactForm;
+  const template = contactForm.emailTemplate;
 
   const mailBody = useMemo(() => {
-    return [
-      `Name: ${formState.name}`,
-      `Email: ${formState.email}`,
-      "",
-      formState.message,
-    ].join("\n");
-  }, [formState]);
+    const subject = formState.subject.trim() || contactForm.defaultSubject;
 
-  const mailtoHref = useMemo(() => {
-    const subject = encodeURIComponent(formState.subject || contactForm.defaultSubject);
-    const body = encodeURIComponent(mailBody);
-    return `mailto:${siteConfig.brand.supportEmail}?subject=${subject}&body=${body}`;
-  }, [formState.subject, mailBody, contactForm.defaultSubject]);
+    return [
+      template.greeting,
+      "",
+      template.requestIntro,
+      "",
+      `${template.detailsHeading}:`,
+      `- ${template.fullNameLabel}: ${formState.name}`,
+      `- ${template.emailLabel}: ${formState.email}`,
+      `- ${template.subjectLabel}: ${subject}`,
+      "",
+      `${template.messageHeading}:`,
+      formState.message,
+      "",
+      template.signOff,
+      "",
+      `${template.closingNamePrefix},`,
+      formState.name,
+    ].join("\n");
+  }, [formState, template, contactForm.defaultSubject]);
+
+  const gmailComposeHref = useMemo(() => {
+    const subject = formState.subject || contactForm.defaultSubject;
+    const params = new URLSearchParams({
+      to: siteConfig.brand.supportEmail,
+      su: subject,
+      body: mailBody,
+    });
+
+    return `${contactForm.gmailComposeBaseUrl}&${params.toString()}`;
+  }, [formState.subject, mailBody, contactForm.defaultSubject, contactForm.gmailComposeBaseUrl]);
 
   const validate = () => {
     if (!formState.name.trim() || !formState.email.trim() || !formState.message.trim()) {
@@ -60,7 +81,7 @@ export function ContactMailtoForm() {
     }
 
     setFormError("");
-    window.location.href = mailtoHref;
+    window.open(gmailComposeHref, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -99,9 +120,16 @@ export function ContactMailtoForm() {
       <div className="pt-1">
         <button
           type="submit"
-          className="inline-flex w-full items-center justify-center rounded-full bg-brand px-7 py-3 text-sm font-semibold text-white transition hover:brightness-110"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-7 py-3 text-sm font-semibold text-white transition hover:brightness-110"
         >
           {contactForm.submitLabel}
+          <Image
+            src="/svgs/common/Breadcrumbs_arrow.svg"
+            alt="arrow"
+            width={16}
+            height={16}
+            className="h-4 w-4 brightness-0 invert"
+          />
         </button>
       </div>
     </form>

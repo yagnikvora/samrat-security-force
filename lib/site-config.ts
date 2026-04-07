@@ -306,6 +306,7 @@ export const siteConfig = {
     metadataTitle: "Contact Us",
     heroTitle: "Contact Us",
     breadcrumbHome: "Home",
+    breadcrumbHomeHref: "/",
     breadcrumbCurrent: "Contact Us",
   },
   contactSection: {
@@ -329,6 +330,18 @@ export const siteConfig = {
     ] as SocialItem[],
   },
   contactForm: {
+    gmailComposeBaseUrl: "https://mail.google.com/mail/?view=cm&fs=1",
+    emailTemplate: {
+      greeting: "Hello Samrat Security Team,",
+      requestIntro: "I would like to inquire about your security services. Please find my details below:",
+      detailsHeading: "Contact Details",
+      fullNameLabel: "Full Name",
+      emailLabel: "Email Address",
+      subjectLabel: "Subject",
+      messageHeading: "Message",
+      signOff: "Thank you for your time. I look forward to your response.",
+      closingNamePrefix: "Best regards",
+    },
     placeholders: {
       name: "Your Name",
       email: "Email",
@@ -340,6 +353,6 @@ export const siteConfig = {
       required: "Please fill in your name, email, and message.",
       invalidEmail: "Please enter a valid email address.",
     },
-    submitLabel: "Send Message ↗",
+    submitLabel: "Send Message",
   },
 };
