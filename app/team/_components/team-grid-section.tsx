@@ -2,13 +2,15 @@ import { SectionTitle } from "@/components/section-title";
 import { siteConfig } from "@/lib/site-config";
 
 export function TeamGridSection() {
+  const section = siteConfig.sections.teamGrid;
+
   return (
     <section>
       <SectionTitle
-        eyebrow="Our Team"
-        title="Meet Our"
-        highlight="Security Team"
-        description="A disciplined team with strong operational standards and responsive leadership."
+        eyebrow={section.eyebrow}
+        title={section.title}
+        highlight={section.highlight}
+        description={section.description}
       />
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

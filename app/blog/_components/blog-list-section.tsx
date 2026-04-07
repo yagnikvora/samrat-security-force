@@ -1,19 +1,22 @@
 import Link from "next/link";
 import { SectionTitle } from "@/components/section-title";
 import type { BlogPost } from "@/lib/blog";
+import { siteConfig } from "@/lib/site-config";
 
 type BlogListSectionProps = {
   posts: BlogPost[];
 };
 
 export function BlogListSection({ posts }: BlogListSectionProps) {
+  const section = siteConfig.sections.blogList;
+
   return (
     <section>
       <SectionTitle
-        eyebrow="Blog"
-        title="Latest Security"
-        highlight="Insights"
-        description="Practical insights on guard operations, surveillance, and incident prevention."
+        eyebrow={section.eyebrow}
+        title={section.title}
+        highlight={section.highlight}
+        description={section.description}
       />
 
       <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -24,7 +27,7 @@ export function BlogListSection({ posts }: BlogListSectionProps) {
             <p className="mt-3 text-sm text-slate-300">{post.excerpt}</p>
             <p className="mt-4 text-xs text-slate-400">{new Date(post.publishedAt).toLocaleDateString()}</p>
             <Link href={`/blog/${post.slug}`} className="mt-5 inline-flex rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-black">
-              Read More
+              {section.readMoreLabel}
             </Link>
           </article>
         ))}

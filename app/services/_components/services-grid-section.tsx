@@ -2,13 +2,15 @@ import { SectionTitle } from "@/components/section-title";
 import { siteConfig } from "@/lib/site-config";
 
 export function ServicesGridSection() {
+  const section = siteConfig.sections.servicesGrid;
+
   return (
     <section>
       <SectionTitle
-        eyebrow="Our Services"
-        title="Security Services"
-        highlight="That Scale"
-        description="Reliable security operations for companies, residences, and public events."
+        eyebrow={section.eyebrow}
+        title={section.title}
+        highlight={section.highlight}
+        description={section.description}
       />
 
       <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

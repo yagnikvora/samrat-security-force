@@ -11,7 +11,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">Quick Links</h4>
+          <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">{siteConfig.footerHeadings.quickLinks}</h4>
           <ul className="mt-4 space-y-2 text-sm text-slate-300">
             {siteConfig.footerLinks.quick.map((item) => (
               <li key={item.href}>
@@ -24,7 +24,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">Help & Support</h4>
+          <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">{siteConfig.footerHeadings.support}</h4>
           <ul className="mt-4 space-y-2 text-sm text-slate-300">
             {siteConfig.footerLinks.support.map((item) => (
               <li key={item.href}>
@@ -37,7 +37,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">Contact Info</h4>
+          <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">{siteConfig.footerHeadings.contactInfo}</h4>
           <ul className="mt-4 space-y-2 text-sm text-slate-300">
             <li>{siteConfig.brand.address}</li>
             <li>{siteConfig.brand.supportEmail}</li>

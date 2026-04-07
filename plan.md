@@ -2,6 +2,11 @@
 
 Build a pixel-accurate, reusable multi-page marketing site in Next.js App Router with a centralized typed content configuration and Sanity-powered blog v1. Keep static sections config-driven now, while preparing the architecture to move more sections to CMS later without rewrites.
 
+**Mobile-First Rule (Mandatory)**
+- From this point onward, every new component and every component change must include a mobile view implementation with good UX.
+- No feature is considered complete unless desktop and mobile behavior are both validated.
+- Every UI delivery must include responsive checks for navigation, spacing, touch targets, and readable typography.
+
 **Steps**
 1. Phase 0 - Preflight and guardrails
 Validate Next.js 16 project behavior, lock environment assumptions, and finalize visual direction from provided references. This phase blocks all others.

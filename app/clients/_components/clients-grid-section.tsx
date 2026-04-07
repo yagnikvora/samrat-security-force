@@ -2,13 +2,15 @@ import { SectionTitle } from "@/components/section-title";
 import { siteConfig } from "@/lib/site-config";
 
 export function ClientsGridSection() {
+  const section = siteConfig.sections.clientsGrid;
+
   return (
     <section>
       <SectionTitle
-        eyebrow="Clients"
-        title="Our Valuable"
-        highlight="Clients"
-        description="Trusted by institutions, businesses, and communities that require reliable protection."
+        eyebrow={section.eyebrow}
+        title={section.title}
+        highlight={section.highlight}
+        description={section.description}
       />
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

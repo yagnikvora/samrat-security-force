@@ -2,13 +2,15 @@ import { SectionTitle } from "@/components/section-title";
 import { siteConfig } from "@/lib/site-config";
 
 export function ServicesPreviewSection() {
+  const section = siteConfig.sections.servicesPreview;
+
   return (
     <section className="page-container mt-20">
       <SectionTitle
-        eyebrow="Our Services"
-        title="Our Exclusive"
-        highlight="Services"
-        description="A strong portfolio of protective services tailored for operational continuity."
+        eyebrow={section.eyebrow}
+        title={section.title}
+        highlight={section.highlight}
+        description={section.description}
       />
       <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {siteConfig.services.map((service) => (

@@ -20,7 +20,7 @@ const initialState: FormState = {
 export function ContactMailtoForm() {
   const [formState, setFormState] = useState<FormState>(initialState);
   const [formError, setFormError] = useState<string>("");
-  const [copied, setCopied] = useState(false);
+  const contactForm = siteConfig.contactForm;
 
   const mailBody = useMemo(() => {
     return [
@@ -32,19 +32,19 @@ export function ContactMailtoForm() {
   }, [formState]);
 
   const mailtoHref = useMemo(() => {
-    const subject = encodeURIComponent(formState.subject || "Security Service Inquiry");
+    const subject = encodeURIComponent(formState.subject || contactForm.defaultSubject);
     const body = encodeURIComponent(mailBody);
     return `mailto:${siteConfig.brand.supportEmail}?subject=${subject}&body=${body}`;
-  }, [formState.subject, mailBody]);
+  }, [formState.subject, mailBody, contactForm.defaultSubject]);
 
   const validate = () => {
     if (!formState.name.trim() || !formState.email.trim() || !formState.message.trim()) {
-      return "Please fill in your name, email, and message.";
+      return contactForm.errors.required;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formState.email)) {
-      return "Please enter a valid email address.";
+      return contactForm.errors.invalidEmail;
     }
 
     return "";
@@ -63,69 +63,45 @@ export function ContactMailtoForm() {
     window.location.href = mailtoHref;
   };
 
-  const copyFallback = async () => {
-    await navigator.clipboard.writeText(
-      `To: ${siteConfig.brand.supportEmail}\nSubject: ${formState.subject || "Security Service Inquiry"}\n\n${mailBody}`,
-    );
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label className="block">
-          <span className="mb-2 block text-xs uppercase tracking-[0.2em] text-slate-400">Your Name</span>
-          <input
-            className="w-full rounded-lg border border-white/10 bg-zinc-900 px-4 py-3 text-sm text-white outline-none transition focus:border-brand"
-            value={formState.name}
-            onChange={(event) => setFormState((old) => ({ ...old, name: event.target.value }))}
-          />
-        </label>
-        <label className="block">
-          <span className="mb-2 block text-xs uppercase tracking-[0.2em] text-slate-400">Email</span>
-          <input
-            className="w-full rounded-lg border border-white/10 bg-zinc-900 px-4 py-3 text-sm text-white outline-none transition focus:border-brand"
-            type="email"
-            value={formState.email}
-            onChange={(event) => setFormState((old) => ({ ...old, email: event.target.value }))}
-          />
-        </label>
-      </div>
+      <input
+        placeholder={contactForm.placeholders.name}
+        className="w-full rounded-md border border-white/10 bg-zinc-900/80 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-400 focus:border-brand"
+        value={formState.name}
+        onChange={(event) => setFormState((old) => ({ ...old, name: event.target.value }))}
+      />
 
-      <label className="block">
-        <span className="mb-2 block text-xs uppercase tracking-[0.2em] text-slate-400">Subject</span>
-        <input
-          className="w-full rounded-lg border border-white/10 bg-zinc-900 px-4 py-3 text-sm text-white outline-none transition focus:border-brand"
-          value={formState.subject}
-          onChange={(event) => setFormState((old) => ({ ...old, subject: event.target.value }))}
-        />
-      </label>
+      <input
+        placeholder={contactForm.placeholders.email}
+        className="w-full rounded-md border border-white/10 bg-zinc-900/80 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-400 focus:border-brand"
+        type="email"
+        value={formState.email}
+        onChange={(event) => setFormState((old) => ({ ...old, email: event.target.value }))}
+      />
 
-      <label className="block">
-        <span className="mb-2 block text-xs uppercase tracking-[0.2em] text-slate-400">Message</span>
-        <textarea
-          className="h-40 w-full resize-none rounded-lg border border-white/10 bg-zinc-900 px-4 py-3 text-sm text-white outline-none transition focus:border-brand"
-          value={formState.message}
-          onChange={(event) => setFormState((old) => ({ ...old, message: event.target.value }))}
-        />
-      </label>
+      <input
+        placeholder={contactForm.placeholders.subject}
+        className="w-full rounded-md border border-white/10 bg-zinc-900/80 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-400 focus:border-brand"
+        value={formState.subject}
+        onChange={(event) => setFormState((old) => ({ ...old, subject: event.target.value }))}
+      />
+
+      <textarea
+        placeholder={contactForm.placeholders.message}
+        className="h-32 w-full resize-none rounded-md border border-white/10 bg-zinc-900/80 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-400 focus:border-brand sm:h-40"
+        value={formState.message}
+        onChange={(event) => setFormState((old) => ({ ...old, message: event.target.value }))}
+      />
 
       {formError ? <p className="text-sm text-red-400">{formError}</p> : null}
 
-      <div className="flex flex-wrap items-center gap-3">
+      <div className="pt-1">
         <button
           type="submit"
-          className="rounded-full bg-brand px-7 py-3 text-sm font-semibold text-black transition hover:brightness-110"
+          className="inline-flex w-full items-center justify-center rounded-full bg-brand px-7 py-3 text-sm font-semibold text-white transition hover:brightness-110"
         >
-          Open Mailbox
-        </button>
-        <button
-          type="button"
-          onClick={copyFallback}
-          className="rounded-full border border-white/20 px-6 py-3 text-sm text-white transition hover:border-brand"
-        >
-          {copied ? "Copied" : "Copy Fallback Template"}
+          {contactForm.submitLabel}
         </button>
       </div>
     </form>

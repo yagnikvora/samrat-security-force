@@ -2,6 +2,8 @@
 
 Execution model: strict phase order with limited parallel tracks to maximize quality and reduce rework.
 
+Mobile-first quality gate: every feature and component update must ship with polished mobile behavior and be tested before acceptance.
+
 Estimated total effort: 72 to 98 hours (single developer), excluding asset delays and content approval cycles.
 
 ## Phase timeline and estimates

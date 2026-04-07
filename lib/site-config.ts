@@ -38,6 +38,28 @@ export type BlogPreview = {
   publishedAt: string;
 };
 
+export type SectionTitleContent = {
+  eyebrow: string;
+  title: string;
+  highlight: string;
+  description: string;
+};
+
+export type BrandValueKey = "supportPhone" | "supportEmail" | "address";
+
+export type ContactDetailItem = {
+  key: BrandValueKey;
+  label: string;
+  icon: string;
+  alt: string;
+};
+
+export type SocialItem = {
+  name: string;
+  href: string;
+  icon: string;
+};
+
 export const siteConfig = {
   brand: {
     name: "Samrat Security",
@@ -193,5 +215,131 @@ export const siteConfig = {
     title: "Stay Updated with Our Security Insights",
     description:
       "Get practical updates, safety tips, and industry insights delivered directly to your inbox.",
+  },
+  footerHeadings: {
+    quickLinks: "Quick Links",
+    support: "Help & Support",
+    contactInfo: "Contact Info",
+  },
+  homeHero: {
+    eyebrow: "Trusted Protection",
+    title: "Where Safety Meets",
+    highlight: "Professional Excellence",
+    description:
+      "We deliver practical, human-first security services for businesses, residential communities, and events. Our teams are trained, responsive, and accountable.",
+    primaryCtaLabel: "Get In Touch",
+    secondaryCtaLabel: "View Services",
+  },
+  sections: {
+    aboutIntro: {
+      eyebrow: "About Us",
+      title: "Your Trusted",
+      highlight: "Security Partner",
+      description: "We are committed to practical, accountable protection that keeps people and operations safe.",
+    } as SectionTitleContent,
+    servicesPreview: {
+      eyebrow: "Our Services",
+      title: "Our Exclusive",
+      highlight: "Services",
+      description: "A strong portfolio of protective services tailored for operational continuity.",
+    } as SectionTitleContent,
+    servicesGrid: {
+      eyebrow: "Our Services",
+      title: "Security Services",
+      highlight: "That Scale",
+      description: "Reliable security operations for companies, residences, and public events.",
+    } as SectionTitleContent,
+    homeFaqPreview: {
+      eyebrow: "FAQ",
+      title: "Frequently Asked",
+      highlight: "Questions",
+      description: "Find quick answers about our process and service model.",
+      ctaLabel: "See All FAQs",
+    },
+    servicesFaq: {
+      eyebrow: "FAQ",
+      title: "Frequently Asked",
+      highlight: "Questions",
+      description: "Service and deployment questions answered clearly.",
+    } as SectionTitleContent,
+    faqPage: {
+      eyebrow: "F.A.Q",
+      title: "Answers to Common",
+      highlight: "Security Questions",
+      description: "Clear, direct responses to help you understand our process and coverage model.",
+    } as SectionTitleContent,
+    teamGrid: {
+      eyebrow: "Our Team",
+      title: "Meet Our",
+      highlight: "Security Team",
+      description: "A disciplined team with strong operational standards and responsive leadership.",
+    } as SectionTitleContent,
+    clientsGrid: {
+      eyebrow: "Clients",
+      title: "Our Valuable",
+      highlight: "Clients",
+      description: "Trusted by institutions, businesses, and communities that require reliable protection.",
+    } as SectionTitleContent,
+    blogList: {
+      eyebrow: "Blog",
+      title: "Latest Security",
+      highlight: "Insights",
+      description: "Practical insights on guard operations, surveillance, and incident prevention.",
+      readMoreLabel: "Read More",
+    },
+  },
+  aboutHighlights: [
+    {
+      title: "24/7 Support",
+      description: "Our team remains available for emergencies and rapid response coordination.",
+    },
+    {
+      title: "Trained Professionals",
+      description: "Every officer is site-briefed, disciplined, and aligned with security protocols.",
+    },
+    {
+      title: "Advanced Technology",
+      description: "Monitoring processes and reporting systems are integrated with field operations.",
+    },
+  ],
+  contactPage: {
+    metadataTitle: "Contact Us",
+    heroTitle: "Contact Us",
+    breadcrumbHome: "Home",
+    breadcrumbCurrent: "Contact Us",
+  },
+  contactSection: {
+    heading: "Get In Touch With Us",
+    description:
+      "Have questions or need reliable security services? Our team is here to help. Reach out to us anytime, and we will provide the right solutions to keep your business and property safe.",
+    infoHeading: "Contact Info",
+    infoDescription:
+      "Feel free to contact us for any inquiries or support. We are always ready to assist you with professional security solutions.",
+    details: [
+      { key: "supportPhone", label: "Phone Number", icon: "/svgs/common/Call.svg", alt: "Phone" },
+      { key: "supportEmail", label: "Email Address", icon: "/svgs/common/Email.svg", alt: "Email" },
+      { key: "address", label: "Office Location", icon: "/svgs/common/Location.svg", alt: "Location" },
+    ] as ContactDetailItem[],
+    followLabel: "Follow Us:",
+    socials: [
+      { name: "Facebook", href: "#", icon: "/svgs/common/Facebook.svg" },
+      { name: "X", href: "#", icon: "/svgs/common/X.svg" },
+      { name: "LinkedIn", href: "#", icon: "/svgs/common/Linkedin.svg" },
+      { name: "Instagram", href: "#", icon: "/svgs/common/Instagram.svg" },
+    ] as SocialItem[],
+  },
+  contactForm: {
+    placeholders: {
+      name: "Your Name",
+      email: "Email",
+      subject: "Subject",
+      message: "Message",
+    },
+    defaultSubject: "Security Service Inquiry",
+    errors: {
+      required: "Please fill in your name, email, and message.",
+      invalidEmail: "Please enter a valid email address.",
+    },
+    submitLabel: "Send Message ↗",
   },
 };

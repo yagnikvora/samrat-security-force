@@ -2,25 +2,24 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 
 export function HeroSection() {
+  const hero = siteConfig.homeHero;
+
   return (
     <section className="page-container pt-14 sm:pt-20">
       <div className="grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
         <div>
-          <p className="text-xs uppercase tracking-[0.25em] text-brand">Trusted Protection</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-brand">{hero.eyebrow}</p>
           <h1 className="mt-5 text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
-            Where Safety Meets
-            <span className="text-brand"> Professional Excellence</span>
+            {hero.title}
+            <span className="text-brand"> {hero.highlight}</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-base text-slate-300">
-            We deliver practical, human-first security services for businesses, residential communities, and events.
-            Our teams are trained, responsive, and accountable.
-          </p>
+          <p className="mt-6 max-w-2xl text-base text-slate-300">{hero.description}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/contact" className="rounded-full bg-brand px-7 py-3 text-sm font-semibold text-black">
-              Get In Touch
+              {hero.primaryCtaLabel}
             </Link>
             <Link href="/services" className="rounded-full border border-white/20 px-7 py-3 text-sm text-white">
-              View Services
+              {hero.secondaryCtaLabel}
             </Link>
           </div>
         </div>
