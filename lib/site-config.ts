@@ -329,6 +329,11 @@ export const siteConfig = {
       { name: "Instagram", href: "#", icon: "/svgs/common/Instagram.svg" },
     ] as SocialItem[],
   },
+  contactMap: {
+    title: "Our Location",
+    embedUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.462639225516!2d70.78923047506925!3d22.29833647968802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959ca1efac3c12b%3A0xa931c3b51e45dd09!2sSamrat%20Security%20Force!5e0!3m2!1sen!2sin!4v1775580069129!5m2!1sen!2sin",
+  },
   contactForm: {
     gmailComposeBaseUrl: "https://mail.google.com/mail/?view=cm&fs=1",
     emailTemplate: {

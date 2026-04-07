@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ContactLayoutSection } from "./_components";
+import { ContactLayoutSection, ContactMapSection } from "./_components";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = {
@@ -26,6 +26,7 @@ export default function ContactPage() {
       </section>
 
       <ContactLayoutSection />
+      <ContactMapSection />
     </>
   );
 }
