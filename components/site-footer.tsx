@@ -8,7 +8,9 @@ import { siteConfig } from "@/lib/site-config";
 export function SiteFooter() {
   const pathname = usePathname() || "/";
   const isBlogDetailPage = pathname.startsWith("/blog/");
-  const isCompactFooter = siteConfig.footer.compactRoutes.includes(pathname) || isBlogDetailPage;
+  const knownExactRoutes = ["/", "/about", "/services", "/team", "/clients", "/faq", "/contact", "/blog"];
+  const isKnownRoute = knownExactRoutes.includes(pathname) || isBlogDetailPage;
+  const isCompactFooter = siteConfig.footer.compactRoutes.includes(pathname) || isBlogDetailPage || !isKnownRoute;
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });

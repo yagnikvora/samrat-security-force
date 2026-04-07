@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function NotFoundPage() {
   return (
@@ -10,8 +11,14 @@ export default function NotFoundPage() {
       <p className="mx-auto mt-4 max-w-xl text-slate-300">
         We could not find the page you were looking for. It may have been moved or removed.
       </p>
-      <Link href="/" className="mt-8 inline-flex rounded-full bg-brand px-7 py-3 text-sm font-semibold text-black">
-        Back To Home
+      <Link
+        href="/"
+        className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand ps-5 pe-1.5 py-1.5 text-[15px] font-medium text-white transition hover:brightness-110"
+      >
+        <span>Back To Home</span>
+        <span className="inline-flex size-8 items-center justify-center rounded-full bg-white/95">
+          <Image src="/images/nevbar_right_arrow.png" alt="Arrow" width={30} height={30} className="h-[30px] w-[30px]" />
+        </span>
       </Link>
     </div>
   );
