@@ -60,6 +60,12 @@ export type SocialItem = {
   icon: string;
 };
 
+export type FooterContactItem = {
+  label: string;
+  icon: string;
+  href?: string;
+};
+
 export const siteConfig = {
   brand: {
     name: "Samrat Security",
@@ -220,6 +226,31 @@ export const siteConfig = {
     quickLinks: "Quick Links",
     support: "Help & Support",
     contactInfo: "Contact Info",
+  },
+  footer: {
+    compactRoutes: ["/contact", "/blog"],
+    logoSrc: "/Logos/logo.png.svg",
+    description: "Reliable security solutions delivered with professionalism, discipline, and 24/7 protection you can trust.",
+    socials: [
+      { name: "Facebook", href: "#", icon: "/svgs/common/Facebook.svg" },
+      { name: "X", href: "#", icon: "/svgs/common/X.svg" },
+      { name: "LinkedIn", href: "#", icon: "/svgs/common/Linkedin.svg" },
+      { name: "Instagram", href: "#", icon: "/svgs/common/Instagram.svg" },
+    ] as SocialItem[],
+    contactItems: [
+      { label: "Kazipur 6710, Dhaka, BD.", icon: "/svgs/footer/Home.svg" },
+      { label: "example@domain.com", icon: "/svgs/footer/mail.svg", href: "mailto:example@domain.com" },
+      { label: "+880123456789", icon: "/svgs/footer/Phone call.svg", href: "tel:+880123456789" },
+      { label: "+880987654321", icon: "/svgs/footer/Phone call.svg", href: "tel:+880987654321" },
+      { label: "87654321", icon: "/svgs/footer/chat_bubble.svg" },
+    ] as FooterContactItem[],
+    copyrightText: "Copyright (Nytrox - info@nytrox.com) © 2026 All rights reserved",
+    topBox: {
+      title: "Stay Updated with Our Security Insights",
+      description: "Get the latest updates, security tips, and industry insights delivered straight to your inbox. Stay informed and keep your business and property protected with expert advice.",
+      inputPlaceholder: "Your Email Address",
+      buttonLabel: "Subscribe",
+    },
   },
   homeHero: {
     eyebrow: "Trusted Protection",

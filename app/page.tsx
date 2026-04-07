@@ -1,4 +1,4 @@
-import { FaqPreviewSection, HeroSection, NewsletterSection, ServicesPreviewSection } from "@/app/_components/home";
+import { FaqPreviewSection, HeroSection, ServicesPreviewSection } from "@/app/_components/home";
 
 export default function Home() {
   return (
@@ -6,7 +6,6 @@ export default function Home() {
       <HeroSection />
       <ServicesPreviewSection />
       <FaqPreviewSection />
-      <NewsletterSection />
     </div>
   );
 }
