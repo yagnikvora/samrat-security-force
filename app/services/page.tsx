@@ -1,14 +1,20 @@
 import { ServicesFaqSection, ServicesGridSection } from "./_components";
+import { PageHero } from "@/components/page-hero";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata = {
-  title: "Services",
+  title: siteConfig.pageHeroes.services.title,
 };
 
 export default function ServicesPage() {
   return (
-    <div className="page-container py-14 sm:py-20">
-      <ServicesGridSection />
-      <ServicesFaqSection />
-    </div>
+    <>
+      <PageHero title={siteConfig.pageHeroes.services.title} breadcrumbs={siteConfig.pageHeroes.services.breadcrumbs} />
+
+      <div className="page-container py-14 sm:py-20">
+        <ServicesGridSection />
+        <ServicesFaqSection />
+      </div>
+    </>
   );
 }

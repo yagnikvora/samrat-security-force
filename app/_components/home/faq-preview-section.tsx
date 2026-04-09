@@ -15,7 +15,7 @@ export function FaqPreviewSection() {
           highlight={section.highlight}
           description={section.description}
         />
-        <Link href="/faq" className="mt-6 inline-flex rounded-full bg-brand px-6 py-2.5 text-sm font-semibold text-black">
+        <Link href="/faq" className="mt-6 inline-flex rounded-full bg-brand px-6 py-2.5 text-sm font-semibold text-primary">
           {section.ctaLabel}
         </Link>
       </div>

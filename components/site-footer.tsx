@@ -8,7 +8,7 @@ import { siteConfig } from "@/lib/site-config";
 export function SiteFooter() {
   const pathname = usePathname() || "/";
   const isBlogDetailPage = pathname.startsWith("/blog/");
-  const knownExactRoutes = ["/", "/about", "/services", "/team", "/clients", "/faq", "/contact", "/blog"];
+  const knownExactRoutes = ["/", "/about", "/services", "/team", "/gallery", "/clients", "/faq", "/contact", "/blog"];
   const isKnownRoute = knownExactRoutes.includes(pathname) || isBlogDetailPage;
   const isCompactFooter = siteConfig.footer.compactRoutes.includes(pathname) || isBlogDetailPage || !isKnownRoute;
 
@@ -27,19 +27,17 @@ export function SiteFooter() {
                 <p className="mt-4 max-w-xl text-[15px] leading-7 text-slate-300">{siteConfig.footer.topBox.description}</p>
               </div>
 
-              <form className="rounded-2xl border border-white/15 bg-black/25 p-4 sm:p-5">
-                <input
-                  placeholder={siteConfig.footer.topBox.inputPlaceholder}
-                  className="w-full rounded-xl border border-white/20 bg-transparent px-4 py-3 text-sm text-white outline-none placeholder:text-slate-400 focus:border-brand"
-                />
-                <button
-                  type="button"
-                  className="mt-4 inline-flex w-full items-center justify-center gap-1 rounded-full bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:brightness-110"
+              <div className="rounded-2xl border border-white/15 bg-primary-25 p-4 sm:p-5">
+                <p className="text-[15px] max-w-[380px] leading-7 text-slate-200">{siteConfig.footer.topBox.ctaDescription}</p>
+
+                <Link
+                  href={siteConfig.footer.topBox.buttonHref}
+                  className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:brightness-110"
                 >
-                  {siteConfig.footer.topBox.buttonLabel}
+                  <span>{siteConfig.footer.topBox.buttonLabel}</span>
                   <Image src="/svgs/common/Breadcrumbs_arrow.svg" alt="arrow" width={14} height={14} className="h-4 w-4 brightness-0 invert" />
-                </button>
-              </form>
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -47,20 +45,20 @@ export function SiteFooter() {
             type="button"
             aria-label="Scroll to top"
             onClick={scrollToTop}
-            className="absolute bottom-0 left-1/2 z-40 inline-flex size-14 -translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full border-[8px] border-black bg-brand"
+            className="absolute bottom-0 left-1/2 z-40 inline-flex size-14 -translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full border-[8px] border-primary bg-brand"
           >
             <Image src="/svgs/common/Footer_up_arrow.svg" alt="up arrow" width={16} height={16} className="h-11 w-11" />
           </button>
         </div>
       ) : null}
 
-      <div className={`relative z-10 border-t border-white/5 bg-black pb-10 ${isCompactFooter ? "pt-14" : "-mt-28 pt-36 sm:-mt-32 sm:pt-40"}`}>
+      <div className={`relative z-10 border-t border-white/5 bg-primary pb-10 ${isCompactFooter ? "pt-14" : "-mt-28 pt-36 sm:-mt-32 sm:pt-40"}`}>
         {isCompactFooter ? (
           <button
             type="button"
             aria-label="Scroll to top"
             onClick={scrollToTop}
-            className="absolute left-1/2 top-0 inline-flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[8px] border-black bg-brand"
+            className="absolute left-1/2 top-0 inline-flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[8px] border-primary bg-brand"
           >
             <Image src="/svgs/common/Footer_up_arrow.svg" alt="up arrow" width={16} height={16} className="h-11 w-11" />
           </button>

@@ -6,7 +6,7 @@ export function ContactLayoutSection() {
   const section = siteConfig.contactSection;
 
   return (
-    <section className="bg-[#121215] py-14 sm:py-16">
+    <section className="bg-secondary py-14 sm:py-16">
       <div className="page-container grid gap-10 lg:grid-cols-[1.25fr_0.85fr]">
         <div>
           <h2 className="text-[40px] font-semibold text-white">{section.heading}</h2>
@@ -35,7 +35,7 @@ export function ContactLayoutSection() {
             ))}
           </ul>
 
-          <div className="mt-8 flex items-center justify-between rounded-xl border border-white/10 bg-zinc-900/60 px-15 py-5">
+          <div className="mt-8 flex items-center justify-between rounded-xl border border-white/10 bg-secondary-60 px-15 py-5">
             <p className="text-[18px] font-semibold text-brand">{section.followLabel}</p>
             <div className="flex items-center gap-2.5">
               {section.socials.map((social) => (

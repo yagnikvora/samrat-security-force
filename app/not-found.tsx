@@ -13,11 +13,17 @@ export default function NotFoundPage() {
       </p>
       <Link
         href="/"
-        className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand ps-5 pe-1.5 py-1.5 text-[15px] font-medium text-white transition hover:brightness-110"
+        className="cta-pill mt-8 inline-flex items-center gap-2 rounded-full ps-5 pe-1.5 py-1.5 text-[15px] font-medium"
       >
         <span>Back To Home</span>
-        <span className="inline-flex size-8 items-center justify-center rounded-full bg-white/95">
-          <Image src="/images/nevbar_right_arrow.png" alt="Arrow" width={30} height={30} className="h-[30px] w-[30px]" />
+        <span className="cta-pill-icon inline-flex size-8 items-center justify-center rounded-full">
+          <Image
+            src="/svgs/common/cta-arrow-up-right.svg"
+            alt="Arrow"
+            width={16}
+            height={16}
+            className="cta-pill-arrow h-4 w-4"
+          />
         </span>
       </Link>
     </div>

@@ -26,7 +26,7 @@ export function BlogListSection({ posts }: BlogListSectionProps) {
             <h3 className="mt-3 text-xl font-semibold text-white">{post.title}</h3>
             <p className="mt-3 text-sm text-slate-300">{post.excerpt}</p>
             <p className="mt-4 text-xs text-slate-400">{new Date(post.publishedAt).toLocaleDateString()}</p>
-            <Link href={`/blog/${post.slug}`} className="mt-5 inline-flex rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-black">
+            <Link href={`/blog/${post.slug}`} className="mt-5 inline-flex rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-primary">
               {section.readMoreLabel}
             </Link>
           </article>

@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import { getBlogPostBySlug } from "@/lib/blog";
 import { BlogPostArticle } from "./_components";
+import { PageHero } from "@/components/page-hero";
+import { siteConfig } from "@/lib/site-config";
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
@@ -32,5 +34,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  return <BlogPostArticle post={post} />;
+  const breadcrumbs = [...siteConfig.blogPostPage.breadcrumbs, { label: post.title }];
+
+  return (
+    <>
+      <PageHero title={post.title} breadcrumbs={breadcrumbs} />
+      <BlogPostArticle post={post} />
+    </>
+  );
 }

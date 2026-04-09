@@ -30,6 +30,12 @@ export type ClientItem = {
   name: string;
 };
 
+export type GalleryItem = {
+  id: string;
+  title: string;
+  category: string;
+};
+
 export type BlogPreview = {
   slug: string;
   title: string;
@@ -66,6 +72,16 @@ export type FooterContactItem = {
   href?: string;
 };
 
+export type BreadcrumbItem = {
+  label: string;
+  href?: string;
+};
+
+export type PageHeroContent = {
+  title: string;
+  breadcrumbs: BreadcrumbItem[];
+};
+
 export const siteConfig = {
   brand: {
     name: "Samrat Security",
@@ -81,6 +97,8 @@ export const siteConfig = {
     { label: "F.A.Q", href: "/faq" },
     { label: "Blog", href: "/blog" },
     { label: "About Us", href: "/about" },
+    { label: "Gallery", href: "/gallery" },
+    { label: "Our Clients", href: "/clients" },
     { label: "Contact Us", href: "/contact" },
   ] as NavItem[],
   footerLinks: {
@@ -148,27 +166,52 @@ export const siteConfig = {
     {
       question: "How do your security services work?",
       answer:
-        "We assess your requirements, create a security plan, and deploy trained personnel with practical monitoring workflows.",
+        "We assess your requirements, create a customized security plan, and deploy trained personnel along with necessary technology to ensure complete protection.",
     },
     {
       question: "Are your security guards professionally trained?",
       answer:
-        "Yes. Every deployed professional passes structured training and site-specific briefing before assignment.",
+        "Yes, all our guards are highly trained, verified, and experienced in handling different security situations with discipline and efficiency.",
     },
     {
       question: "Do you provide 24/7 security services?",
       answer:
-        "Yes, we provide full-time and shift-based coverage based on your operating hours and risk profile.",
+        "Absolutely. We offer round-the-clock security services to ensure continuous protection for your property and people.",
     },
     {
-      question: "Can I customize services for my site?",
+      question: "Can I customize security services based on my needs?",
       answer:
-        "Yes. Plans are customized by location type, crowd size, threat level, and reporting requirements.",
+        "Yes, we provide flexible and tailored security solutions depending on your business, event, or residential requirements.",
     },
     {
-      question: "Do you support multiple locations?",
+      question: "What industries do you serve?",
       answer:
-        "Yes, we can deploy teams across multiple branches with centralized coordination and periodic audit reporting.",
+        "We serve corporate offices, residential societies, events, industrial areas, retail stores, and more.",
+    },
+    {
+      question: "How do I choose the right security service for my needs?",
+      answer:
+        "Our team analyzes your location, risks, and requirements to recommend the most suitable security solution tailored to your needs.",
+    },
+    {
+      question: "Do your security guards carry any equipment?",
+      answer:
+        "Yes, depending on the requirement, our guards may be equipped with communication devices, surveillance tools, and other necessary equipment.",
+    },
+    {
+      question: "Can your services be used for short-term projects or events?",
+      answer:
+        "Absolutely. We provide flexible security services for short-term needs such as events, exhibitions, and temporary projects.",
+    },
+    {
+      question: "How do you ensure the reliability of your staff?",
+      answer:
+        "All our personnel go through strict background checks, professional training, and regular performance evaluations to maintain high standards.",
+    },
+    {
+      question: "Do you provide security services in multiple locations?",
+      answer:
+        "Yes, we offer scalable security solutions and can deploy teams across multiple locations as per client requirements.",
     },
   ] as FaqItem[],
   team: [
@@ -191,6 +234,16 @@ export const siteConfig = {
     { id: "c7", name: "Navyug School" },
     { id: "c8", name: "SGVP School" },
   ] as ClientItem[],
+  galleryItems: [
+    { id: "g1", title: "Corporate Security Briefing", category: "Corporate" },
+    { id: "g2", title: "Event Access Control", category: "Event" },
+    { id: "g3", title: "Residential Patrol Deployment", category: "Residential" },
+    { id: "g4", title: "Control Room Monitoring", category: "Surveillance" },
+    { id: "g5", title: "VIP Escort Detail", category: "Executive" },
+    { id: "g6", title: "Perimeter Inspection", category: "Industrial" },
+    { id: "g7", title: "Night Shift Operations", category: "24/7 Coverage" },
+    { id: "g8", title: "Emergency Response Drill", category: "Training" },
+  ] as GalleryItem[],
   blogPlaceholders: [
     {
       slug: "how-professional-security-guards-improve-safety",
@@ -228,7 +281,7 @@ export const siteConfig = {
     contactInfo: "Contact Info",
   },
   footer: {
-    compactRoutes: ["/contact", "/blog"],
+    compactRoutes: ["/contact", "/blog", "/faq"],
     logoSrc: "/Logos/logo.png.svg",
     description: "Reliable security solutions delivered with professionalism, discipline, and 24/7 protection you can trust.",
     socials: [
@@ -246,10 +299,11 @@ export const siteConfig = {
     ] as FooterContactItem[],
     copyrightText: "Copyright (Nytrox - info@nytrox.com) © 2026 All rights reserved",
     topBox: {
-      title: "Stay Updated with Our Security Insights",
-      description: "Get the latest updates, security tips, and industry insights delivered straight to your inbox. Stay informed and keep your business and property protected with expert advice.",
-      inputPlaceholder: "Your Email Address",
-      buttonLabel: "Subscribe",
+      title: "Let's Help You Find the Right Service",
+      description: "Looking for reliable security services? Get expert advice, customized solutions, and the protection your business or property needs all in one place.",
+      ctaDescription: "Connect with our experts and get tailored protection for your needs.",
+      buttonLabel: "Contact",
+      buttonHref: "/contact",
     },
   },
   homeHero: {
@@ -311,6 +365,13 @@ export const siteConfig = {
       highlight: "Clients",
       description: "Trusted by institutions, businesses, and communities that require reliable protection.",
     } as SectionTitleContent,
+    galleryGrid: {
+      eyebrow: "Gallery",
+      title: "Security Operations",
+      highlight: "In Action",
+      description:
+        "A quick look at our on-ground deployments, monitoring workflows, and response-ready field operations.",
+    } as SectionTitleContent,
     blogList: {
       eyebrow: "Blog",
       title: "Latest Security",
@@ -333,12 +394,69 @@ export const siteConfig = {
       description: "Monitoring processes and reporting systems are integrated with field operations.",
     },
   ],
-  contactPage: {
-    metadataTitle: "Contact Us",
-    heroTitle: "Contact Us",
-    breadcrumbHome: "Home",
-    breadcrumbHomeHref: "/",
-    breadcrumbCurrent: "Contact Us",
+  pageHeroes: {
+    about: {
+      title: "About Us",
+      breadcrumbs: [
+        { label: "Home", href: "/" },
+        { label: "About Us" },
+      ],
+    } as PageHeroContent,
+    services: {
+      title: "Services",
+      breadcrumbs: [
+        { label: "Home", href: "/" },
+        { label: "Services" },
+      ],
+    } as PageHeroContent,
+    faq: {
+      title: "F.A.Q",
+      breadcrumbs: [
+        { label: "Home", href: "/" },
+        { label: "F.A.Q" },
+      ],
+    } as PageHeroContent,
+    team: {
+      title: "Our Team",
+      breadcrumbs: [
+        { label: "Home", href: "/" },
+        { label: "Our Team" },
+      ],
+    } as PageHeroContent,
+    clients: {
+      title: "Our Clients",
+      breadcrumbs: [
+        { label: "Home", href: "/" },
+        { label: "Our Clients" },
+      ],
+    } as PageHeroContent,
+    gallery: {
+      title: "Gallery",
+      breadcrumbs: [
+        { label: "Home", href: "/" },
+        { label: "Gallery" },
+      ],
+    } as PageHeroContent,
+    blog: {
+      title: "Blog",
+      breadcrumbs: [
+        { label: "Home", href: "/" },
+        { label: "Blog" },
+      ],
+    } as PageHeroContent,
+    contact: {
+      title: "Contact Us",
+      breadcrumbs: [
+        { label: "Home", href: "/" },
+        { label: "Contact Us" },
+      ],
+    } as PageHeroContent,
+  },
+  blogPostPage: {
+    breadcrumbs: [
+      { label: "Home", href: "/" },
+      { label: "Blog", href: "/blog" },
+    ] as BreadcrumbItem[],
   },
   contactSection: {
     heading: "Get In Touch With Us",
