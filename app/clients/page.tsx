@@ -11,9 +11,7 @@ export default function ClientsPage() {
     <>
       <PageHero title={siteConfig.pageHeroes.clients.title} breadcrumbs={siteConfig.pageHeroes.clients.breadcrumbs} />
 
-      <div className="page-container py-14 sm:py-20">
-        <ClientsGridSection />
-      </div>
+      <ClientsGridSection />
     </>
   );
 }

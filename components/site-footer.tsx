@@ -128,7 +128,7 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="border-t border-white/10 bg-zinc-900/60 py-5 text-center text-xs text-slate-400">
+      <div className="bg-secondary py-5 text-center text-xs">
         {siteConfig.footer.copyrightText}
       </div>
     </footer>

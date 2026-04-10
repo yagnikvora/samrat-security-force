@@ -28,6 +28,7 @@ export type TeamMember = {
 export type ClientItem = {
   id: string;
   name: string;
+  logo: string;
 };
 
 export type GalleryItem = {
@@ -225,14 +226,22 @@ export const siteConfig = {
     { id: "t8", name: "Mina Khatun", role: "Compliance Officer" },
   ] as TeamMember[],
   clients: [
-    { id: "c1", name: "Blue Club" },
-    { id: "c2", name: "Blinkit" },
-    { id: "c3", name: "TeaPost" },
-    { id: "c4", name: "Radio Mirchi" },
-    { id: "c5", name: "Silver Pumps" },
-    { id: "c6", name: "DNCC" },
-    { id: "c7", name: "Navyug School" },
-    { id: "c8", name: "SGVP School" },
+    { id: "c1", name: "Blue Club", logo: "/images/our_clients/blue_club.jpg" },
+    { id: "c2", name: "Blinkit", logo: "/images/our_clients/blinkit.png" },
+    { id: "c3", name: "TeaPost", logo: "/images/our_clients/tea_post.png" },
+    { id: "c4", name: "Radio Mirchi", logo: "/images/our_clients/radio_mirchi.png" },
+    { id: "c5", name: "Balaji Hardware", logo: "/images/our_clients/balaji_hardware.jpg" },
+    { id: "c6", name: "Silver Pumps", logo: "/images/our_clients/silver_pumps.png" },
+    { id: "c7", name: "Meena Cast", logo: "/images/our_clients/meena_cast.png" },
+    { id: "c8", name: "DNCC", logo: "/images/our_clients/DNCC.jpg" },
+    { id: "c9", name: "Gangotri School", logo: "/images/our_clients/gangotri_school.png" },
+    { id: "c10", name: "Navyug School", logo: "/images/our_clients/navyug_school.png" },
+    { id: "c11", name: "New Era School", logo: "/images/our_clients/new_era_school.png" },
+    { id: "c12", name: "SGVP School", logo: "/images/our_clients/SGVP_school.png" },
+    { id: "c13", name: "Navodaya Vidhyalay", logo: "/images/our_clients/navodaya_vidhyalay.png" },
+    { id: "c14", name: "Khushbu Auto Finance", logo: "/images/our_clients/khushbu_auto_finance.jpg" },
+    { id: "c15", name: "Shree Mayur Engineering", logo: "/images/our_clients/shree_mayur_engineering.png" },
+    { id: "c16", name: "Zincare", logo: "/images/our_clients/zincare.png" },
   ] as ClientItem[],
   galleryItems: [
     { id: "g1", title: "Corporate Security Briefing", category: "Corporate" },
