@@ -316,11 +316,19 @@ export const siteConfig = {
     },
   },
   homeHero: {
-    eyebrow: "Trusted Protection",
+    eyebrow: "Trusted & Professional Security Services",
     title: "Where Safety Meets",
     highlight: "Professional Excellence",
     description:
-      "We deliver practical, human-first security services for businesses, residential communities, and events. Our teams are trained, responsive, and accountable.",
+      "We deliver dependable security services with trained professionals and modern technology. Whether it's corporate spaces, events, or residential areas, our team ensures complete protection with quick response and strong discipline.",
+    stats: [
+      { label: "Industry Experience", value: "10+" },
+      { label: "Satisfied Clients", value: "300+" },
+      { label: "Monitoring & Support", value: "24/7" },
+    ] as StatItem[],
+    primaryImage: "/images/common/HeroSectionImg_HomePage.png",
+    secondaryImage: "/images/common/HeroSectionImg2_HomePage.png",
+    sealText: "10+ YEARS OF EXPERIENCE",
     primaryCtaLabel: "Get In Touch",
     secondaryCtaLabel: "View Services",
   },

@@ -186,3 +186,50 @@ h4 {
   filter: brightness(0) invert(1);
   transform: scale(1.03);
 }
+
+.hero-seal {
+  position: relative;
+  display: inline-block;
+  height: 180px;
+  width: 180px;
+}
+
+.hero-seal__svg {
+  height: 100%;
+  width: 100%;
+  transform: rotate(-20deg);
+  transform-origin: 50% 50%;
+  animation: hero-seal-spin 14s linear infinite;
+}
+
+.hero-seal__center {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-seal__text {
+  fill: rgba(255, 255, 255, 0.84);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@keyframes hero-seal-spin {
+  from {
+    transform: rotate(-20deg);
+  }
+
+  to {
+    transform: rotate(340deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-seal__svg {
+    animation: none;
+  }
+}
