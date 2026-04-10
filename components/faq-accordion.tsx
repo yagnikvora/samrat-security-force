@@ -39,8 +39,8 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
               }`}
             >
               <div className="overflow-hidden">
-                <div className="px-3 py-3 sm:px-4 lg:min-h-[120px]">
-                  <p className="text-[15px] leading-8 text-slate-200">{item.answer}</p>
+                <div className="px-3 py-2 sm:px-4 sm:py-3">
+                  <p className="text-[15px] leading-7 text-slate-200">{item.answer}</p>
                 </div>
               </div>
             </div>

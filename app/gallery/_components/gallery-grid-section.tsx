@@ -65,12 +65,15 @@ export function GalleryGridSection() {
       <section className="mx-auto max-w-[900px] bg-primary pt-10 pb-25 px-4">
         <div className="grid auto-rows-[210px] grid-cols-1 gap-5 sm:auto-rows-[230px] sm:grid-cols-2 md:grid-cols-6 md:auto-rows-[245px]">
           {galleryLayout.map((item) => (
-            <article key={item.id} className={`relative overflow-hidden rounded-2xl ${item.className}`}>
+            <article
+              key={item.id}
+              className={`group relative overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(0,0,0,0.34)] ${item.className}`}
+            >
               <Image
                 src={item.src}
                 alt={item.alt}
                 fill
-                className={`object-cover ${item.imageClassName}`}
+                className={`object-cover transition-transform duration-300 group-hover:scale-[1.02] ${item.imageClassName}`}
                 sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                 priority={item.id === "img-1" || item.id === "img-2"}
               />
