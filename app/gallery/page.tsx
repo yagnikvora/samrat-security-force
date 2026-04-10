@@ -11,9 +11,7 @@ export default function GalleryPage() {
     <>
       <PageHero title={siteConfig.pageHeroes.gallery.title} breadcrumbs={siteConfig.pageHeroes.gallery.breadcrumbs} />
 
-      <div className="page-container py-14 sm:py-20">
-        <GalleryGridSection />
-      </div>
+      <GalleryGridSection />
     </>
   );
 }
