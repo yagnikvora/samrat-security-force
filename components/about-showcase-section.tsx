@@ -121,7 +121,7 @@ export function AboutShowcaseSection({
               {showBottomMoreAbout ? (
                 <Link
                   href={section.moreCtaHref}
-                  className="cta-pill inline-flex items-center gap-3 rounded-full ps-7 pe-2 py-2 text-sm font-medium"
+                  className="cta-pill inline-flex w-fit self-start items-center gap-3 whitespace-nowrap rounded-full ps-6 pe-1.5 py-1.5 text-sm font-medium sm:self-auto"
                 >
                   <span>{section.moreCtaLabel}</span>
                   <span className="cta-pill__icon inline-flex h-8 w-8 items-center justify-center rounded-full">

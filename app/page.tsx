@@ -1,4 +1,5 @@
 import { AboutShowcaseSection } from "@/components/about-showcase-section";
+import { ProfessionalExpertiseSection } from "@/components/professional-expertise-section";
 import { ServicesShowcaseSection } from "@/components/services-showcase-section";
 import { FaqPreviewSection, HeroSection } from "@/app/_components/home";
 
@@ -8,6 +9,7 @@ export default function Home() {
       <HeroSection />
       <AboutShowcaseSection className="mt-20" />
       <ServicesShowcaseSection className="mt-15" />
+      <ProfessionalExpertiseSection backgroundClassName="bg-secondary" />
       <FaqPreviewSection />
     </div>
   );

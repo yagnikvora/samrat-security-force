@@ -98,6 +98,32 @@ export type ServicesShowcaseContent = {
   cardIcon: string;
 };
 
+export type ExpertisePoint = {
+  title: string;
+  description: string;
+};
+
+export type ExpertiseProgressItem = {
+  label: string;
+  value: number;
+};
+
+export type ProfessionalExpertiseContent = {
+  eyebrow: string;
+  title: string;
+  highlight: string;
+  description: string;
+  ctaLabel: string;
+  ctaHref: string;
+  imageSrc: string;
+  imageAlt: string;
+  sideCardTitle: string;
+  sideCardDescription: string;
+  sideCardIcon: string;
+  points: ExpertisePoint[];
+  progressItems: ExpertiseProgressItem[];
+};
+
 export const siteConfig = {
   brand: {
     name: "Samrat Security",
@@ -188,6 +214,35 @@ export const siteConfig = {
     viewAllHref: "/services",
     cardIcon: "/svgs/common/docs.svg",
   } as ServicesShowcaseContent,
+  professionalExpertise: {
+    eyebrow: "Why Choose Us",
+    title: "Delivering Safety Through",
+    highlight: "Professional Expertise",
+    description:
+      "We provide reliable and professional security services designed to protect your people and property. With trained personnel, modern technology, and a strong commitment to safety, we ensure peace of mind for every client we serve.",
+    ctaLabel: "Get In Touch",
+    ctaHref: "/contact",
+    imageSrc: "/images/common/YourTrustedSecurityPartnerImg1_HomePage.png",
+    imageAlt: "Professional security officers",
+    sideCardTitle: "Turning Safety Into Complete Protection",
+    sideCardDescription:
+      "We combine experience, technology, and skilled manpower to deliver effective security solutions tailored to your needs.",
+    sideCardIcon: "/svgs/common/docs.svg",
+    points: [
+      {
+        title: "Our Expertise",
+        description: "Years of industry experience helping businesses and residential spaces stay secure.",
+      },
+      {
+        title: "Reliable Team",
+        description: "Dedicated and disciplined professionals committed to maintaining safety at all times.",
+      },
+    ],
+    progressItems: [
+      { label: "Security Guard", value: 97 },
+      { label: "House Keeping", value: 97 },
+    ],
+  } as ProfessionalExpertiseContent,
   faqs: [
     {
       question: "How do your security services work?",

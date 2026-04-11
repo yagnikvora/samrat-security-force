@@ -1,5 +1,6 @@
 import { ServicesFaqSection } from "./_components";
 import { PageHero } from "@/components/page-hero";
+import { ProfessionalExpertiseSection } from "@/components/professional-expertise-section";
 import { ServicesShowcaseSection } from "@/components/services-showcase-section";
 import { siteConfig } from "@/lib/site-config";
 
@@ -13,6 +14,8 @@ export default function ServicesPage() {
       <PageHero title={siteConfig.pageHeroes.services.title} breadcrumbs={siteConfig.pageHeroes.services.breadcrumbs} />
 
       <ServicesShowcaseSection showHeader={false} backgroundClassName="bg-secondary" />
+
+      <ProfessionalExpertiseSection backgroundClassName="bg-primary" />
 
       <div className="page-container py-14 sm:py-20">
         <ServicesFaqSection />
