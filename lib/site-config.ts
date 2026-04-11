@@ -104,6 +104,8 @@ export type HomeSecuritySolutionItem = {
   imageSrc: string;
   imageAlt: string;
   href: string;
+  imageClassName?: string;
+  cardClassName?: string;
 };
 
 export type HomeSecuritySolutionsContent = {
@@ -245,37 +247,42 @@ export const siteConfig = {
       {
         title: "Access Verification Systems",
         description: "Secure authentication systems for controlled and safe entry management.",
-        imageSrc: "/images/common/OurSecuritySolutionsImg1_HomePage.png",
+        imageSrc: "/images/common/OurSecuritySolutionsImg1_HomePage.jpg",
         imageAlt: "Access control at a public event",
         href: "/services",
+        imageClassName: "object-cover object-[center_25%]",
       },
       {
         title: "Night Security Services",
         description: "Dedicated night patrol and monitoring to ensure safety during high-risk hours.",
-        imageSrc: "/images/common/OurSecuritySolutionsImg2_HomePage.png",
+        imageSrc: "/images/common/OurSecuritySolutionsImg2_HomePage.jpg",
         imageAlt: "Security officers on night patrol",
         href: "/services",
+        imageClassName: "object-cover object-[center_20%]",
       },
       {
         title: "VIP Protection Services",
         description: "Personalized security for high-profile individuals ensuring safety, privacy, and confidence.",
-        imageSrc: "/images/common/OurSecuritySolutionsImg3_HomePage.png",
+        imageSrc: "/images/common/OurSecuritySolutionsImg3_HomePage.jpg",
         imageAlt: "VIP security personnel near residential perimeter",
         href: "/services",
+        imageClassName: "object-cover object-[center_20%]",
       },
       {
         title: "Remote Surveillance Control",
         description: "Advanced remote monitoring systems to keep an eye on your property from anywhere.",
-        imageSrc: "/images/common/OurSecuritySolutionsImg4_HomePage.png",
+        imageSrc: "/images/common/OurSecuritySolutionsImg4_HomePage.jpg",
         imageAlt: "Control room surveillance monitoring",
         href: "/services",
+        imageClassName: "object-cover object-center",
       },
       {
         title: "Industrial Security",
         description: "Specialized security services for factories and industrial areas with strict safety and monitoring protocols.",
-        imageSrc: "/images/common/OurSecuritySolutionsImg5_HomePage.png",
+        imageSrc: "/images/common/OurSecuritySolutionsImg5_HomePage.jpg",
         imageAlt: "Industrial site security team",
         href: "/services",
+        imageClassName: "object-cover object-[center_2%]",
       },
     ],
   } as HomeSecuritySolutionsContent,

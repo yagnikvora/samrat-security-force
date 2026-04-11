@@ -233,3 +233,79 @@ h4 {
     animation: none;
   }
 }
+
+/* ── Our Security Solutions card image cutout ── */
+.solution-card-img {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/*
+ * The PNGs already have a transparent notch at the bottom-right.
+ * We fill that notch with the card background so the image
+ * blends cleanly, and layer the orange icon on top.
+ *
+ * Notch block: 62×62  |  Inner concave curves: 12×12
+ * Icon: 52×52 centred 5px from each edge inside the notch.
+ */
+
+/* Main notch fill */
+.solution-card-img::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 62px;
+  height: 62px;
+  background: var(--color-secondary);
+  border-top-left-radius: 16px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Concave curve — right edge, above the notch */
+.solution-card-img::before {
+  content: "";
+  position: absolute;
+  bottom: 61px;
+  right: -1px;
+  width: 12px;
+  height: 12px;
+  background: transparent;
+  border-bottom-right-radius: 12px;
+  box-shadow: 4px 4px 0 4px var(--color-secondary);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Concave curve — bottom edge, left of the notch */
+.solution-card-icon-curve {
+  position: absolute;
+  bottom: -1px;
+  right: 61px;
+  width: 12px;
+  height: 12px;
+  background: transparent;
+  border-bottom-right-radius: 12px;
+  box-shadow: 4px 4px 0 4px var(--color-secondary);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Orange icon button — centred inside the 62×62 notch */
+.solution-card-icon {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 300ms ease;
+}
+
+.group:hover .solution-card-icon {
+  transform: scale(1.05);
+}

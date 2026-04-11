@@ -10,7 +10,7 @@ export default function Home() {
       <AboutShowcaseSection className="mt-20" />
       <ServicesShowcaseSection className="mt-15" />
       <ProfessionalExpertiseSection backgroundClassName="bg-secondary" />
-      <HomeSecuritySolutionsSection className="mt-15" />
+      <HomeSecuritySolutionsSection />
       <FaqPreviewSection />
     </div>
   );
