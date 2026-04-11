@@ -98,6 +98,25 @@ export type ServicesShowcaseContent = {
   cardIcon: string;
 };
 
+export type HomeSecuritySolutionItem = {
+  title: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+  href: string;
+};
+
+export type HomeSecuritySolutionsContent = {
+  eyebrow: string;
+  title: string;
+  highlight: string;
+  description: string;
+  viewAllLabel: string;
+  viewAllHref: string;
+  actionIcon: string;
+  cards: HomeSecuritySolutionItem[];
+};
+
 export type ExpertisePoint = {
   title: string;
   description: string;
@@ -214,6 +233,52 @@ export const siteConfig = {
     viewAllHref: "/services",
     cardIcon: "/svgs/common/docs.svg",
   } as ServicesShowcaseContent,
+  homeSecuritySolutions: {
+    eyebrow: "Projects",
+    title: "Our Security",
+    highlight: "Solutions",
+    description: "Explore our wide range of security solutions delivered across different industries.",
+    viewAllLabel: "View All",
+    viewAllHref: "/services",
+    actionIcon: "/svgs/common/Our_Security_solution.svg",
+    cards: [
+      {
+        title: "Access Verification Systems",
+        description: "Secure authentication systems for controlled and safe entry management.",
+        imageSrc: "/images/common/OurSecuritySolutionsImg1_HomePage.png",
+        imageAlt: "Access control at a public event",
+        href: "/services",
+      },
+      {
+        title: "Night Security Services",
+        description: "Dedicated night patrol and monitoring to ensure safety during high-risk hours.",
+        imageSrc: "/images/common/OurSecuritySolutionsImg2_HomePage.png",
+        imageAlt: "Security officers on night patrol",
+        href: "/services",
+      },
+      {
+        title: "VIP Protection Services",
+        description: "Personalized security for high-profile individuals ensuring safety, privacy, and confidence.",
+        imageSrc: "/images/common/OurSecuritySolutionsImg3_HomePage.png",
+        imageAlt: "VIP security personnel near residential perimeter",
+        href: "/services",
+      },
+      {
+        title: "Remote Surveillance Control",
+        description: "Advanced remote monitoring systems to keep an eye on your property from anywhere.",
+        imageSrc: "/images/common/OurSecuritySolutionsImg4_HomePage.png",
+        imageAlt: "Control room surveillance monitoring",
+        href: "/services",
+      },
+      {
+        title: "Industrial Security",
+        description: "Specialized security services for factories and industrial areas with strict safety and monitoring protocols.",
+        imageSrc: "/images/common/OurSecuritySolutionsImg5_HomePage.png",
+        imageAlt: "Industrial site security team",
+        href: "/services",
+      },
+    ],
+  } as HomeSecuritySolutionsContent,
   professionalExpertise: {
     eyebrow: "Why Choose Us",
     title: "Delivering Safety Through",
