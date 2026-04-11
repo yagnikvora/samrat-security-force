@@ -12,10 +12,6 @@ export function SiteFooter() {
   const isKnownRoute = knownExactRoutes.includes(pathname) || isBlogDetailPage;
   const isCompactFooter = siteConfig.footer.compactRoutes.includes(pathname) || isBlogDetailPage || !isKnownRoute;
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <footer>
       {!isCompactFooter ? (
@@ -41,27 +37,25 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <button
-            type="button"
+          <a
+            href="#page-top"
             aria-label="Scroll to top"
-            onClick={scrollToTop}
-            className="absolute bottom-0 left-1/2 z-40 inline-flex size-14 -translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full border-[8px] border-primary bg-brand"
+            className="footer-scroll-top absolute bottom-0 left-1/2 z-40 inline-flex size-14 -translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full border-[8px] border-primary bg-brand"
           >
             <Image src="/svgs/common/Footer_up_arrow.svg" alt="up arrow" width={16} height={16} className="h-11 w-11" />
-          </button>
+          </a>
         </div>
       ) : null}
 
       <div className={`relative z-10 border-t border-white/5 bg-primary pb-10 ${isCompactFooter ? "pt-14" : "-mt-28 pt-36 sm:-mt-32 sm:pt-40"}`}>
         {isCompactFooter ? (
-          <button
-            type="button"
+          <a
+            href="#page-top"
             aria-label="Scroll to top"
-            onClick={scrollToTop}
-            className="absolute left-1/2 top-0 inline-flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[8px] border-primary bg-brand"
+            className="footer-scroll-top absolute left-1/2 top-0 inline-flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[8px] border-primary bg-brand"
           >
             <Image src="/svgs/common/Footer_up_arrow.svg" alt="up arrow" width={16} height={16} className="h-11 w-11" />
-          </button>
+          </a>
         ) : null}
 
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">

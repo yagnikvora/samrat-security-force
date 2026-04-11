@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Sora, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
@@ -27,6 +27,11 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -35,6 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sora.variable} ${spaceGrotesk.variable} h-full antialiased`}>
       <body className="min-h-full bg-site text-slate-100">
+        <div id="page-top" />
         <div className="site-grid min-h-screen">
           <SiteHeader />
           <main className="flex-1">{children}</main>

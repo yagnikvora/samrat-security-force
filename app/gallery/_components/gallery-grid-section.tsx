@@ -1,61 +1,70 @@
 import Image from "next/image";
 
+import galleryImg1 from "@/public/images/gallery/GalleryImg1.png";
+import galleryImg2 from "@/public/images/gallery/GalleryImg2.png";
+import galleryImg3 from "@/public/images/gallery/GalleryImg3.png";
+import galleryImg4 from "@/public/images/gallery/GalleryImg4.png";
+import galleryImg5 from "@/public/images/gallery/GalleryImg5.png";
+import galleryImg6 from "@/public/images/gallery/GalleryImg6.png";
+import galleryImg7 from "@/public/images/gallery/GalleryImg7.png";
+import galleryImg8 from "@/public/images/gallery/GalleryImg8.png";
+
 const galleryLayout = [
   {
     id: "img-1",
-    src: "/images/gallery/GalleryImg1.png",
+    src: galleryImg1,
     alt: "Security team standing on a red carpet event entrance",
     className: "md:col-span-3 md:row-span-1",
-    imageClassName: "object-center",
+    imageClassName: "object-cover object-center",
   },
   {
     id: "img-2",
-    src: "/images/gallery/GalleryImg2.png",
+    src: galleryImg2,
     alt: "Security team in front of an event backdrop",
     className: "md:col-span-3 md:row-span-1",
-    imageClassName: "object-center",
+    imageClassName: "object-cover object-center",
   },
   {
     id: "img-3",
-    src: "/images/gallery/GalleryImg3.png",
+    src: galleryImg3,
     alt: "Ceremonial guard portrait in full uniform",
-    className: "md:col-span-2 md:row-span-2",
-    imageClassName: "object-center md:object-top",
+    className: "row-span-2 md:col-span-2 md:row-span-2",
+    imageClassName: "gallery-img3",
   },
   {
     id: "img-4",
-    src: "/images/gallery/GalleryImg4.png",
+    src: galleryImg4,
     alt: "Security personnel lined up in front of storefront names",
     className: "md:col-span-2 md:row-span-1",
-    imageClassName: "object-center",
+    imageClassName: "object-cover object-center",
   },
   {
     id: "img-5",
-    src: "/images/gallery/GalleryImg5.png",
+    src: galleryImg5,
     alt: "Security team and guests at an outdoor location",
     className: "md:col-span-2 md:row-span-1",
-    imageClassName: "object-center",
+    imageClassName: "object-cover object-center",
   },
   {
     id: "img-6",
-    src: "/images/gallery/GalleryImg6.png",
+    src: galleryImg6,
     alt: "Security staff with hosts at an indoor celebration",
     className: "md:col-span-4 md:row-span-1",
-    imageClassName: "object-center",
+    imageClassName: "object-cover object-center",
   },
   {
     id: "img-7",
-    src: "/images/gallery/GalleryImg7.png",
+    src: galleryImg7,
     alt: "Traditional welcoming team with security staff",
     className: "md:col-span-4 md:row-span-1",
-    imageClassName: "object-center",
+    imageClassName: "object-cover object-center",
   },
   {
     id: "img-8",
-    src: "/images/gallery/GalleryImg8.png",
+    src: galleryImg8,
     alt: "Security team at a facility entrance",
     className: "md:col-span-2 md:row-span-1",
-    imageClassName: "object-center",
+    imageClassName: "object-cover object-center",
   },
 ] as const;
 
@@ -73,7 +82,7 @@ export function GalleryGridSection() {
                 src={item.src}
                 alt={item.alt}
                 fill
-                className={`object-cover transition-transform duration-300 group-hover:scale-[1.02] ${item.imageClassName}`}
+                className={`transition-transform duration-300 group-hover:scale-[1.02] ${item.imageClassName}`}
                 sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                 priority={item.id === "img-1" || item.id === "img-2"}
               />
