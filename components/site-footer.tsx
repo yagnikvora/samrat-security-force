@@ -12,6 +12,10 @@ export function SiteFooter() {
   const isKnownRoute = knownExactRoutes.includes(pathname) || isBlogDetailPage;
   const isCompactFooter = siteConfig.footer.compactRoutes.includes(pathname) || isBlogDetailPage || !isKnownRoute;
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer>
       {!isCompactFooter ? (
@@ -37,25 +41,27 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <a
-            href="#page-top"
+          <button
+            type="button"
             aria-label="Scroll to top"
-            className="footer-scroll-top absolute bottom-0 left-1/2 z-40 inline-flex size-14 -translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full border-[8px] border-primary bg-brand"
+            onClick={scrollToTop}
+            className="absolute bottom-0 left-1/2 z-40 inline-flex size-14 -translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full border-[8px] border-primary bg-brand"
           >
             <Image src="/svgs/common/Footer_up_arrow.svg" alt="up arrow" width={16} height={16} className="h-11 w-11" />
-          </a>
+          </button>
         </div>
       ) : null}
 
       <div className={`relative z-10 border-t border-white/5 bg-primary pb-10 ${isCompactFooter ? "pt-14" : "-mt-28 pt-36 sm:-mt-32 sm:pt-40"}`}>
         {isCompactFooter ? (
-          <a
-            href="#page-top"
+          <button
+            type="button"
             aria-label="Scroll to top"
-            className="footer-scroll-top absolute left-1/2 top-0 inline-flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[8px] border-primary bg-brand"
+            onClick={scrollToTop}
+            className="absolute left-1/2 top-0 inline-flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[8px] border-primary bg-brand"
           >
             <Image src="/svgs/common/Footer_up_arrow.svg" alt="up arrow" width={16} height={16} className="h-11 w-11" />
-          </a>
+          </button>
         ) : null}
 
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
@@ -122,7 +128,7 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="bg-secondary py-5 text-center text-xs">
+      <div className="border-t border-white/10 bg-zinc-900/60 py-5 text-center text-xs text-slate-400">
         {siteConfig.footer.copyrightText}
       </div>
     </footer>

@@ -37,6 +37,11 @@ export type GalleryItem = {
   category: string;
 };
 
+export type LogoItem = {
+  name: string;
+  src: string;
+};
+
 export type BlogPreview = {
   slug: string;
   title: string;
@@ -88,7 +93,7 @@ export const siteConfig = {
     name: "Samrat Security",
     tagline:
       "Reliable security solutions delivered with professionalism, discipline, and 24/7 protection.",
-    supportPhone: "+88012345678",
+    supportPhone: "+91 98989 24397",
     supportEmail: "support@samratsecurity.com",
     address: "Kazipur 6710, Sirajganj, BD",
   },
@@ -411,6 +416,45 @@ export const siteConfig = {
       description: "Monitoring processes and reporting systems are integrated with field operations.",
     },
   ],
+  aboutShowcase: {
+    eyebrow: "About Us",
+    title: "Your Trusted",
+    highlight: "Security Partner",
+    description: "We are committed to delivering reliable and professional security services that protect what matters most.",
+    viewAllLabel: "View All",
+    viewAllHref: "/about",
+    primaryImage: "/images/common/YourTrustedSecurityPartnerImg1_HomePage.png",
+    secondaryImage: "/images/common/YourTrustedSecurityPartnerImg2_HomePage.png",
+    supportCardTitle: "24/7 Support",
+    supportCardDescription: "Our team is always alert and ready to respond at any time.",
+    supportCardCtaHref: "/contact",
+    featureIcon: "/svgs/common/docs.svg",
+    features: [
+      {
+        title: "Our Expertise",
+        description: "With years of experience, we provide customized security solutions for businesses, events, and residential areas.",
+      },
+      {
+        title: "Trained Professionals",
+        description: "Our security personnel are highly trained, disciplined, and prepared to handle all types of situations.",
+      },
+      {
+        title: "Advanced Technology",
+        description: "We use modern surveillance systems and smart monitoring tools to ensure maximum protection.",
+      },
+    ],
+    moreCtaLabel: "More About Us",
+    moreCtaHref: "/about",
+    callLabel: "Call Us Any Time",
+    callIcon: "/svgs/common/Phone_Number.svg",
+    logos: [
+      { name: "GeM", src: "/images/about_us/SliderLogo1.png" },
+      { name: "Scrum Alliance", src: "/images/about_us/SliderLogo2.png" },
+      { name: "ISO", src: "/images/about_us/SliderLogo3.png" },
+      { name: "MSME", src: "/images/about_us/SliderLogo4.png" },
+      { name: "Certified Badge", src: "/images/about_us/SliderLogo5.png" },
+    ] as LogoItem[],
+  },
   pageHeroes: {
     about: {
       title: "About Us",

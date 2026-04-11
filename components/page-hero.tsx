@@ -9,7 +9,7 @@ type PageHeroProps = {
 
 export function PageHero({ title, breadcrumbs }: PageHeroProps) {
   return (
-    <section className="bg-primary py-10 sm:py-12 lg:py-14">
+    <section className="border-b border-white/5 bg-primary py-10 sm:py-12 lg:py-14">
       <div className="page-container text-center">
         <h1 className="text-4xl font-semibold text-white sm:text-5xl">{title}</h1>
         <div className="mt-5 inline-flex flex-wrap items-center justify-center gap-2 text-sm text-slate-300">
