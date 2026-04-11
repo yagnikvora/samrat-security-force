@@ -88,6 +88,16 @@ export type PageHeroContent = {
   breadcrumbs: BreadcrumbItem[];
 };
 
+export type ServicesShowcaseContent = {
+  eyebrow: string;
+  title: string;
+  highlight: string;
+  description: string;
+  viewAllLabel: string;
+  viewAllHref: string;
+  cardIcon: string;
+};
+
 export const siteConfig = {
   brand: {
     name: "Samrat Security",
@@ -135,39 +145,49 @@ export const siteConfig = {
       id: "01",
       title: "Manned Guarding",
       description:
-        "Trained guards for offices, factories, and residential complexes.",
+        "Trained and professional security guards ensuring safety for offices, factories, and residential areas.",
     },
     {
       id: "02",
       title: "Event Security",
       description:
-        "End-to-end event protection with coordinated crowd control.",
+        "Complete security management for events, ensuring smooth operations and crowd control.",
     },
     {
       id: "03",
       title: "Corporate Security",
       description:
-        "Corporate access control, patrol routines, and incident readiness.",
+        "Reliable protection for corporate offices with disciplined staff and advanced security protocols.",
     },
     {
       id: "04",
       title: "Residential Security",
       description:
-        "Dedicated building and neighborhood safety monitoring services.",
+        "Dedicated security services for apartments, societies, and private properties.",
     },
     {
       id: "05",
       title: "CCTV Surveillance",
       description:
-        "24/7 monitoring and reporting with escalation-ready processes.",
+        "24/7 monitoring with advanced camera systems to detect and prevent any suspicious activity.",
     },
     {
       id: "06",
       title: "Access Control",
       description:
-        "Visitor management and access policy enforcement for all sites.",
+        "Smart entry management systems to control and monitor who enters your premises.",
     },
   ] as ServiceItem[],
+  servicesShowcase: {
+    eyebrow: "Our Services",
+    title: "Our Exclusive",
+    highlight: "Services",
+    description:
+      "We offer a wide range of professional security services designed to protect your business, property, and people.",
+    viewAllLabel: "View All",
+    viewAllHref: "/services",
+    cardIcon: "/svgs/common/docs.svg",
+  } as ServicesShowcaseContent,
   faqs: [
     {
       question: "How do your security services work?",
