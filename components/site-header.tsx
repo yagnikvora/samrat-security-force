@@ -67,47 +67,62 @@ export function SiteHeader() {
           aria-expanded={isMobileOpen}
           onClick={() => setIsMobileOpen((old) => !old)}
         >
-          <span className="text-xl leading-none">{isMobileOpen ? "×" : "☰"}</span>
+          <span className={`text-xl leading-none transition-transform duration-300 ${isMobileOpen ? "rotate-90" : "rotate-0"}`}>
+            {isMobileOpen ? "×" : "☰"}
+          </span>
         </button>
       </div>
 
-      {isMobileOpen ? (
-        <div className="border-t border-white/10 bg-primary-95 px-4 py-4 md:hidden">
-          <nav className="flex flex-col gap-3">
-            {siteConfig.nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
-                  isActive(item.href) ? "bg-white/5 text-brand" : "text-slate-100 hover:bg-white/5 hover:text-brand"
-                }`}
-                onClick={() => setIsMobileOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+      <div
+        className={`grid transition-all duration-300 ease-out md:hidden ${
+          isMobileOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+        aria-hidden={!isMobileOpen}
+      >
+        <div className="overflow-hidden">
+          <div
+            className={`border-t border-white/10 bg-primary-95 px-4 py-4 transition-transform duration-300 ease-out ${
+              isMobileOpen ? "translate-y-0" : "-translate-y-2"
+            }`}
+          >
+            <nav className="flex flex-col gap-3">
+              {siteConfig.nav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
+                    isActive(item.href) ? "bg-white/5 text-brand" : "text-slate-100 hover:bg-white/5 hover:text-brand"
+                  }`}
+                  onClick={() => setIsMobileOpen(false)}
+                  tabIndex={isMobileOpen ? 0 : -1}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
 
-          {!isContactRoute ? (
-            <Link
-              href="/contact"
-              className="cta-pill mt-4 inline-flex items-center gap-2 rounded-full ps-3.5 pe-1.5 py-1.5 text-[15px]"
-              onClick={() => setIsMobileOpen(false)}
-            >
-              <span>Get In Touch</span>
-              <span className="cta-pill-icon inline-flex size-8 items-center justify-center rounded-full">
-                <Image
-                  src="/svgs/common/cta-arrow-up-right.svg"
-                  alt="Arrow"
-                  width={16}
-                  height={16}
-                  className="cta-pill-arrow h-4 w-4"
-                />
-              </span>
-            </Link>
-          ) : null}
+            {!isContactRoute ? (
+              <Link
+                href="/contact"
+                className="cta-pill mt-4 inline-flex items-center gap-2 rounded-full ps-3.5 pe-1.5 py-1.5 text-[15px]"
+                onClick={() => setIsMobileOpen(false)}
+                tabIndex={isMobileOpen ? 0 : -1}
+              >
+                <span>Get In Touch</span>
+                <span className="cta-pill-icon inline-flex size-8 items-center justify-center rounded-full">
+                  <Image
+                    src="/svgs/common/cta-arrow-up-right.svg"
+                    alt="Arrow"
+                    width={16}
+                    height={16}
+                    className="cta-pill-arrow h-4 w-4"
+                  />
+                </span>
+              </Link>
+            ) : null}
+          </div>
         </div>
-      ) : null}
+      </div>
     </header>
   );
 }

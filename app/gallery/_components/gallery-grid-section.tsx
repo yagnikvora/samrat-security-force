@@ -29,7 +29,7 @@ const galleryLayout = [
     src: galleryImg3,
     alt: "Ceremonial guard portrait in full uniform",
     className: "row-span-2 md:col-span-2 md:row-span-2",
-    imageClassName: "gallery-img3",
+    imageClassName: "object-cover object-center",
   },
   {
     id: "img-4",
@@ -72,7 +72,24 @@ export function GalleryGridSection() {
   return (
     <div className="bg-primary -mb-10">
       <section className="mx-auto max-w-[900px] bg-primary pt-10 pb-25 px-4">
-        <div className="grid auto-rows-[210px] grid-cols-1 gap-5 sm:auto-rows-[230px] sm:grid-cols-2 md:grid-cols-6 md:auto-rows-[245px]">
+        <div className="grid grid-cols-1 gap-4 md:hidden">
+          {galleryLayout.map((item) => (
+            <article
+              key={`mobile-${item.id}`}
+              className="group relative overflow-hidden rounded-2xl transition-all duration-300"
+            >
+              <Image
+                src={item.src}
+                alt={item.alt}
+                className="h-auto w-full"
+                sizes="100vw"
+                priority={item.id === "img-1" || item.id === "img-2"}
+              />
+            </article>
+          ))}
+        </div>
+
+        <div className="hidden auto-rows-[210px] grid-cols-1 gap-5 sm:auto-rows-[230px] sm:grid-cols-2 md:grid md:grid-cols-6 md:auto-rows-[245px]">
           {galleryLayout.map((item) => (
             <article
               key={item.id}
