@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 import { siteConfig } from "@/lib/site-config";
 
@@ -14,6 +17,7 @@ export function AboutShowcaseSection({
   showTopViewAll = true,
   showBottomMoreAbout = true,
 }: AboutShowcaseSectionProps) {
+  const sectionRef = useRef<HTMLElement | null>(null);
   const section = siteConfig.aboutShowcase;
   const callHref = `tel:${siteConfig.brand.supportPhone.replace(/[^+\d]/g, "")}`;
   const sectionClassName = className ? ` ${className}` : "";
@@ -21,10 +25,51 @@ export function AboutShowcaseSection({
     ? "md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_auto]"
     : "md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]";
 
+  useEffect(() => {
+    const root = sectionRef.current;
+    if (!root) {
+      return;
+    }
+
+    const targets = Array.from(root.querySelectorAll<HTMLElement>(".reveal-up"));
+    if (!targets.length) {
+      return;
+    }
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reducedMotion.matches) {
+      targets.forEach((target) => target.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.classList.add("is-visible");
+          currentObserver.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: "0px 0px -8% 0px",
+      },
+    );
+
+    targets.forEach((target) => observer.observe(target));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <section className={`relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-secondary${sectionClassName}`}>
+    <section ref={sectionRef} className={`relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-secondary${sectionClassName}`}>
       <div className="mx-auto w-full max-w-[76rem] px-5 py-5 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
-        <header className="border-b border-white/10 pb-8">
+        <header className="reveal-up border-b border-white/10 pb-8">
           <p className="flex items-center gap-2 text-sm font-medium text-slate-200">
             <span className="h-2 w-2 rounded-full bg-brand" aria-hidden />
             {section.eyebrow}
@@ -60,7 +105,7 @@ export function AboutShowcaseSection({
         </header>
 
         <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-start">
-          <div className="grid gap-4 sm:grid-cols-2 sm:grid-rows-[179px_178px] md:min-w-0 md:flex-[1.03]">
+          <div className="reveal-up reveal-delay-1 grid gap-4 sm:grid-cols-2 sm:grid-rows-[179px_178px] md:min-w-0 md:flex-[1.03]">
             <div className="relative aspect-[315/373] overflow-hidden rounded-2xl sm:row-span-2 sm:h-full sm:aspect-auto">
               <Image
                 src={section.primaryImage}
@@ -102,10 +147,10 @@ export function AboutShowcaseSection({
             </div>
           </div>
 
-          <div className="flex h-full flex-col justify-between md:min-w-0 md:flex-1">
+          <div className="reveal-up reveal-delay-2 flex h-full flex-col justify-between md:min-w-0 md:flex-1">
             <div className="space-y-6">
-              {section.features.map((item) => (
-                <article key={item.title} className="flex gap-4">
+              {section.features.map((item, index) => (
+                <article key={item.title} className="reveal-up flex gap-4" style={{ animationDelay: `${260 + index * 120}ms` }}>
                   <span className="mt-1 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand/15">
                     <Image src={section.featureIcon} alt="Feature" width={28} height={28} className="h-11 w-11" />
                   </span>
@@ -151,12 +196,13 @@ export function AboutShowcaseSection({
           </div>
         </div>
 
-        <div className="mt-10 border-t border-white/10 pt-6">
+        <div className="reveal-up reveal-delay-3 mt-10 border-t border-white/10 pt-6">
           <ul className="grid grid-cols-2 items-center gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {section.logos.map((logo) => (
+            {section.logos.map((logo, index) => (
               <li
                 key={logo.src}
-                className="group relative h-12 opacity-85 transition-all duration-300 hover:-translate-y-0.5 hover:opacity-100 sm:h-14 lg:h-16"
+                className="reveal-up group relative h-12 opacity-85 transition-all duration-300 hover:-translate-y-0.5 hover:opacity-100 sm:h-14 lg:h-16"
+                style={{ animationDelay: `${360 + index * 70}ms` }}
               >
                 <span
                   aria-hidden
