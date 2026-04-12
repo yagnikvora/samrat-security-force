@@ -1,4 +1,5 @@
 import { AboutShowcaseSection } from "@/components/about-showcase-section";
+import { ExperienceStatsSection } from "@/components/experience-stats-section";
 import { ProfessionalExpertiseSection } from "@/components/professional-expertise-section";
 import { ServicesShowcaseSection } from "@/components/services-showcase-section";
 import { TeamShowcaseSection } from "@/components/team-showcase-section";
@@ -22,6 +23,7 @@ export default function Home() {
       <HomeSecuritySolutionsSection />
       <HomeSecurityNeedsSection />
       <TeamShowcaseSection title="Our" highlight="Team Members" description={teamDescription} />
+      <ExperienceStatsSection backgroundClassName="bg-secondary" />
       <FaqPreviewSection />
     </div>
   );

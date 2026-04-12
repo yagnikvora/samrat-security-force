@@ -8,6 +8,12 @@ export type StatItem = {
   value: string;
 };
 
+export type ExperienceStatItem = {
+  label: string;
+  value: string;
+  emphasize?: boolean;
+};
+
 export type ServiceItem = {
   id: string;
   title: string;
@@ -185,6 +191,10 @@ export type TeamShowcaseContent = {
   members: TeamShowcaseItem[];
 };
 
+export type ExperienceStatsContent = {
+  items: ExperienceStatItem[];
+};
+
 export const siteConfig = {
   brand: {
     name: "Samrat Security",
@@ -214,7 +224,7 @@ export const siteConfig = {
       { label: "Contact Us", href: "/contact" },
       { label: "Blog Articles", href: "/blog" },
       { label: "FAQs", href: "/faq" },
-      { label: "Our Team", href: "/team" },
+      { label: "Our Team", href: "/gallery" },
     ] as NavItem[],
     legal: [
       { label: "Privacy Policy", href: "#" },
@@ -227,6 +237,14 @@ export const siteConfig = {
     { label: "Emergency Support", value: "24/7" },
     { label: "Certified Officers", value: "150+" },
   ] as StatItem[],
+  experienceStats: {
+    items: [
+      { value: "10+", label: "Industry Experience" },
+      { value: "98%", label: "Client Satisfaction", emphasize: true },
+      { value: "150+", label: "Expert Team Members" },
+      { value: "24/7", label: "Service Availability", emphasize: true },
+    ],
+  } as ExperienceStatsContent,
   services: [
     {
       id: "01",
@@ -339,7 +357,7 @@ export const siteConfig = {
     sharedDescription:
       "Our team is made up of highly trained, disciplined, and dedicated security professionals who are committed to ensuring your safety.",
     viewAllLabel: "View All",
-    viewAllHref: "/team",
+    viewAllHref: "/gallery",
     members: [
       {
         imageSrc: "/images/common/OurTeamMembersImg1_HomePage.png",

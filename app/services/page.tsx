@@ -1,4 +1,5 @@
 import { ServicesFaqSection } from "./_components";
+import { ExperienceStatsSection } from "@/components/experience-stats-section";
 import { PageHero } from "@/components/page-hero";
 import { ProfessionalExpertiseSection } from "@/components/professional-expertise-section";
 import { ServicesShowcaseSection } from "@/components/services-showcase-section";
@@ -13,7 +14,9 @@ export default function ServicesPage() {
     <>
       <PageHero title={siteConfig.pageHeroes.services.title} breadcrumbs={siteConfig.pageHeroes.services.breadcrumbs} />
 
+
       <ServicesShowcaseSection showHeader={false} backgroundClassName="bg-secondary" />
+      <ExperienceStatsSection backgroundClassName="bg-primary" />
 
       <ProfessionalExpertiseSection backgroundClassName="bg-primary" />
 

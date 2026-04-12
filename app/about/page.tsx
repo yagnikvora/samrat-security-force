@@ -1,4 +1,5 @@
-import { AboutIntroSection, AboutStatsSection } from "./_components";
+import { AboutIntroSection } from "./_components";
+import { ExperienceStatsSection } from "@/components/experience-stats-section";
 import { PageHero } from "@/components/page-hero";
 import { TeamShowcaseSection } from "@/components/team-showcase-section";
 import { siteConfig } from "@/lib/site-config";
@@ -15,6 +16,7 @@ export default function AboutPage() {
     <>
       <PageHero title={siteConfig.pageHeroes.about.title} breadcrumbs={siteConfig.pageHeroes.about.breadcrumbs} />
 
+
       <AboutIntroSection />
       <TeamShowcaseSection
         className="mt-2"
@@ -23,6 +25,7 @@ export default function AboutPage() {
         description={teamDescription}
         showViewAll={false}
       />
+      <ExperienceStatsSection backgroundClassName="bg-secondary" />
     </>
   );
 }
