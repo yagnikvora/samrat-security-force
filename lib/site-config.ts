@@ -119,6 +119,26 @@ export type HomeSecuritySolutionsContent = {
   cards: HomeSecuritySolutionItem[];
 };
 
+export type HomeSecurityNeedFeature = {
+  title: string;
+  description: string;
+  icon: string;
+  iconAlt: string;
+};
+
+export type HomeSecurityNeedsContent = {
+  eyebrow: string;
+  title: string;
+  highlight: string;
+  titleSuffix: string;
+  description: string;
+  primaryImageSrc: string;
+  primaryImageAlt: string;
+  secondaryImageSrc: string;
+  secondaryImageAlt: string;
+  features: HomeSecurityNeedFeature[];
+};
+
 export type ExpertisePoint = {
   title: string;
   description: string;
@@ -286,6 +306,32 @@ export const siteConfig = {
       },
     ],
   } as HomeSecuritySolutionsContent,
+  homeSecurityNeeds: {
+    eyebrow: "Contact With Us",
+    title: "Do You Have Any",
+    highlight: "Security",
+    titleSuffix: "Needs in Mind?",
+    description:
+      "Looking for reliable and professional security services? We are here to help. Whether it is for your business, event, or residential property, our team is ready to provide tailored security solutions that ensure complete safety and peace of mind.",
+    primaryImageSrc: "/images/common/DoYouHaveAnySecurityNeedsinMindImg1_HomePage.png",
+    primaryImageAlt: "Security operator monitoring multiple surveillance screens",
+    secondaryImageSrc: "/images/common/DoYouHaveAnySecurityNeedsinMindImg2_HomePage.png",
+    secondaryImageAlt: "Two professional guards standing alert indoors",
+    features: [
+      {
+        title: "Affordable & Flexible Pricing",
+        description: "We offer cost-effective security solutions without compromising on quality and reliability.",
+        icon: "/svgs/common/docs.svg",
+        iconAlt: "Pricing feature icon",
+      },
+      {
+        title: "Easy & Transparent Process",
+        description: "Simple onboarding with clear communication and no hidden charges, just dependable service.",
+        icon: "/svgs/common/docs.svg",
+        iconAlt: "Process feature icon",
+      },
+    ],
+  } as HomeSecurityNeedsContent,
   professionalExpertise: {
     eyebrow: "Why Choose Us",
     title: "Delivering Safety Through",

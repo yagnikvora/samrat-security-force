@@ -1,7 +1,12 @@
 import { AboutShowcaseSection } from "@/components/about-showcase-section";
 import { ProfessionalExpertiseSection } from "@/components/professional-expertise-section";
 import { ServicesShowcaseSection } from "@/components/services-showcase-section";
-import { FaqPreviewSection, HeroSection, HomeSecuritySolutionsSection } from "@/app/_components/home";
+import {
+  FaqPreviewSection,
+  HeroSection,
+  HomeSecurityNeedsSection,
+  HomeSecuritySolutionsSection,
+} from "@/app/_components/home";
 
 export default function Home() {
   return (
@@ -11,6 +16,7 @@ export default function Home() {
       <ServicesShowcaseSection className="mt-15" />
       <ProfessionalExpertiseSection backgroundClassName="bg-secondary" />
       <HomeSecuritySolutionsSection />
+      <HomeSecurityNeedsSection />
       <FaqPreviewSection />
     </div>
   );
