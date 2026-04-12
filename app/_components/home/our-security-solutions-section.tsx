@@ -1,6 +1,10 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
+import { motionViewport, revealUpTransition, revealUpVariants } from "@/lib/motion";
 import { siteConfig } from "@/lib/site-config";
 
 type HomeSecuritySolutionsSectionProps = {
@@ -33,7 +37,14 @@ export function HomeSecuritySolutionsSection({ className }: HomeSecuritySolution
         <section className={`relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-primary${sectionClassName}`}>
             <div className="w-full px-5 py-10 sm:px-8 sm:py-13 lg:px-12 lg:py-20">
                 <div className="mx-auto w-full max-w-[70rem]">
-                    <header className="border-b border-white/10 pb-7">
+                    <motion.header
+                        className="border-b border-white/10 pb-7"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={motionViewport}
+                        variants={revealUpVariants}
+                        transition={revealUpTransition()}
+                    >
                         <p className="flex items-center gap-2 text-sm font-medium text-slate-200">
                             <span className="h-2 w-2 rounded-full bg-brand" aria-hidden />
                             {section.eyebrow}
@@ -66,13 +77,25 @@ export function HomeSecuritySolutionsSection({ className }: HomeSecuritySolution
                                 </Link>
                             </div>
                         </div>
-                    </header>
+                    </motion.header>
 
-                    <div className="mt-6 grid gap-3.5 md:grid-cols-2 lg:grid-cols-6">
+                    <motion.div
+                        className="mt-6 grid gap-3.5 md:grid-cols-2 lg:grid-cols-6"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={motionViewport}
+                        variants={revealUpVariants}
+                        transition={revealUpTransition(0.12)}
+                    >
                         {section.cards.map((card, index) => (
-                            <article
+                            <motion.article
                                 key={card.title}
                                 className={`rounded-2xl border border-white/10 bg-secondary p-2.5 pb-4 md:col-span-1 ${cardGridClassName[index] ?? ""} ${card.cardClassName ?? ""}`}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={motionViewport}
+                                variants={revealUpVariants}
+                                transition={revealUpTransition(0.18 + index * 0.09)}
                             >
                                 <div className="group">
                                     <div className={`solution-card-img relative h-[180px]`}>
@@ -98,9 +121,9 @@ export function HomeSecuritySolutionsSection({ className }: HomeSecuritySolution
                                         <p className="mt-1.5 text-[13px] leading-relaxed">{card.description}</p>
                                     </div>
                                 </div>
-                            </article>
+                            </motion.article>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

@@ -1,9 +1,10 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
 
+import { motionViewport, revealUpTransition, revealUpVariants } from "@/lib/motion";
 import { siteConfig } from "@/lib/site-config";
 
 type ServicesShowcaseSectionProps = {
@@ -17,57 +18,22 @@ export function ServicesShowcaseSection({
   showHeader = true,
   backgroundClassName = "bg-primary",
 }: ServicesShowcaseSectionProps) {
-  const sectionRef = useRef<HTMLElement | null>(null);
   const section = siteConfig.servicesShowcase;
   const sectionClassName = className ? ` ${className}` : "";
   const cardsSpacingClassName = showHeader ? "mt-9" : "mt-0";
 
-  useEffect(() => {
-    const root = sectionRef.current;
-    if (!root) {
-      return;
-    }
-
-    const targets = Array.from(root.querySelectorAll<HTMLElement>(".reveal-up"));
-    if (!targets.length) {
-      return;
-    }
-
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reducedMotion.matches) {
-      targets.forEach((target) => target.classList.add("is-visible"));
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries, currentObserver) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          currentObserver.unobserve(entry.target);
-        });
-      },
-      {
-        threshold: 0.2,
-        rootMargin: "0px 0px -8% 0px",
-      },
-    );
-
-    targets.forEach((target) => observer.observe(target));
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
   return (
-    <section ref={sectionRef} className={`relative left-1/2 right-1/2 -mx-[50vw] w-screen ${backgroundClassName}${sectionClassName}`}>
+    <section className={`relative left-1/2 right-1/2 -mx-[50vw] w-screen ${backgroundClassName}${sectionClassName}`}>
       <div className="mx-auto w-full max-w-[76rem] px-5 py-10 sm:px-8 sm:py-13 lg:px-10 lg:py-20">
         {showHeader ? (
-          <header className="reveal-up border-b border-white/10 pb-8">
+          <motion.header
+            className="border-b border-white/10 pb-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={motionViewport}
+            variants={revealUpVariants}
+            transition={revealUpTransition()}
+          >
             <p className="flex items-center gap-2 text-sm font-medium text-slate-200">
               <span className="h-2 w-2 rounded-full bg-brand" aria-hidden />
               {section.eyebrow}
@@ -100,15 +66,26 @@ export function ServicesShowcaseSection({
                 </Link>
               </div>
             </div>
-          </header>
+          </motion.header>
         ) : null}
 
-        <div className={`reveal-up reveal-delay-1 ${cardsSpacingClassName} grid gap-x-7 gap-y-15 md:grid-cols-2 lg:grid-cols-3`}>
+        <motion.div
+          className={`${cardsSpacingClassName} grid gap-x-7 gap-y-15 md:grid-cols-2 lg:grid-cols-3`}
+          initial="hidden"
+          whileInView="visible"
+          viewport={motionViewport}
+          variants={revealUpVariants}
+          transition={revealUpTransition(0.12)}
+        >
           {siteConfig.services.map((service, index) => (
-            <article
+            <motion.article
               key={service.id}
-              className="reveal-up rounded-2xl border border-white/10 bg-secondary px-5 py-6 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-white/20 hover:shadow-[0_10px_26px_rgba(0,0,0,0.22)]"
-              style={{ animationDelay: `${180 + index * 90}ms` }}
+              className="rounded-2xl border border-white/10 bg-secondary px-5 py-6 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-white/20 hover:shadow-[0_10px_26px_rgba(0,0,0,0.22)]"
+              initial="hidden"
+              whileInView="visible"
+              viewport={motionViewport}
+              variants={revealUpVariants}
+              transition={revealUpTransition(0.18 + index * 0.09)}
             >
               <div className="flex items-start justify-between gap-5">
                 <div className="flex min-w-0 items-center gap-3">
@@ -122,9 +99,9 @@ export function ServicesShowcaseSection({
               </div>
 
               <p className="px-2 text-[15px] mt-4 max-w-[34ch]">{service.description}</p>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

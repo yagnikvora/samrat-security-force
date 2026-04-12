@@ -1,9 +1,19 @@
 "use client";
 
+import {
+  animate,
+  motion,
+  useInView,
+  useMotionValue,
+  useMotionValueEvent,
+  useReducedMotion,
+  useTransform,
+} from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
+import { motionViewport, revealEase, revealUpTransition, revealUpVariants } from "@/lib/motion";
 import { siteConfig } from "@/lib/site-config";
 
 type ProfessionalExpertiseSectionProps = {
@@ -11,100 +21,89 @@ type ProfessionalExpertiseSectionProps = {
   backgroundClassName?: "bg-primary" | "bg-secondary";
 };
 
+type AnimatedProgressCardProps = {
+  label: string;
+  value: number;
+  index: number;
+  className: string;
+};
+
+function AnimatedProgressCard({ label, value, index, className }: AnimatedProgressCardProps) {
+  const cardRef = useRef<HTMLElement | null>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const isInView = useInView(cardRef, { once: true, amount: 0.2 });
+  const progress = useMotionValue(prefersReducedMotion ? value : 0);
+  const progressWidth = useTransform(progress, (latest) => `${Math.max(0, latest)}%`);
+  const remainingWidth = useTransform(progress, (latest) => `${Math.max(0, 100 - latest)}%`);
+  const [displayValue, setDisplayValue] = useState<number>(prefersReducedMotion ? value : 0);
+
+  useMotionValueEvent(progress, "change", (latest) => {
+    setDisplayValue(Math.round(latest));
+  });
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      progress.set(value);
+      return;
+    }
+
+    if (!isInView) {
+      return;
+    }
+
+    const controls = animate(progress, value, {
+      duration: 1.2,
+      ease: revealEase,
+    });
+
+    return () => {
+      controls.stop();
+    };
+  }, [isInView, prefersReducedMotion, progress, value]);
+
+  return (
+    <motion.article
+      ref={cardRef}
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={motionViewport}
+      variants={revealUpVariants}
+      transition={revealUpTransition(0.26 + index * 0.12)}
+    >
+      <div className="flex items-center justify-between gap-4 text-sm font-semibold text-white">
+        <span>{label}</span>
+        <span className="text-brand">{displayValue}%</span>
+      </div>
+      <div className="relative mt-3 h-2.5 overflow-hidden rounded-full bg-white/30">
+        <motion.div
+          className="absolute inset-y-0 left-0 rounded-full bg-[#ff933a] shadow-[0_0_0_1px_rgba(255,147,58,0.22)]"
+          style={{ width: progressWidth }}
+        />
+        <motion.div className="absolute inset-y-0 right-0 rounded-full" style={{ width: remainingWidth }} aria-hidden />
+      </div>
+    </motion.article>
+  );
+}
+
 export function ProfessionalExpertiseSection({
   className,
   backgroundClassName = "bg-primary",
 }: ProfessionalExpertiseSectionProps) {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const hasAnimatedProgressRef = useRef(false);
-  const progressAnimationFrameRef = useRef<number | null>(null);
   const section = siteConfig.professionalExpertise;
   const sectionClassName = className ? ` ${className}` : "";
-  const [animatedProgressValues, setAnimatedProgressValues] = useState<number[]>(() =>
-    section.progressItems.map(() => 0),
-  );
-
-  useEffect(() => {
-    const root = sectionRef.current;
-    if (!root) {
-      return;
-    }
-
-    const targets = Array.from(root.querySelectorAll<HTMLElement>(".reveal-up"));
-    if (!targets.length) {
-      return;
-    }
-
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reducedMotion.matches) {
-      targets.forEach((target) => target.classList.add("is-visible"));
-      setAnimatedProgressValues(section.progressItems.map((item) => item.value));
-      return;
-    }
-
-    const animateProgressValues = () => {
-      if (hasAnimatedProgressRef.current) {
-        return;
-      }
-
-      hasAnimatedProgressRef.current = true;
-      const targetValues = section.progressItems.map((item) => item.value);
-      const animationDuration = 1200;
-      let startedAt: number | null = null;
-
-      const step = (timestamp: number) => {
-        if (startedAt === null) {
-          startedAt = timestamp;
-        }
-
-        const elapsed = timestamp - startedAt;
-        const progress = Math.min(elapsed / animationDuration, 1);
-        setAnimatedProgressValues(targetValues.map((value) => Math.round(value * progress)));
-
-        if (progress < 1) {
-          progressAnimationFrameRef.current = window.requestAnimationFrame(step);
-          return;
-        }
-
-        setAnimatedProgressValues(targetValues);
-        progressAnimationFrameRef.current = null;
-      };
-
-      progressAnimationFrameRef.current = window.requestAnimationFrame(step);
-    };
-
-    const observer = new IntersectionObserver(
-      (entries, currentObserver) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.classList.add("is-visible");
-          animateProgressValues();
-          currentObserver.unobserve(entry.target);
-        });
-      },
-      {
-        threshold: 0.2,
-        rootMargin: "0px 0px -8% 0px",
-      },
-    );
-
-    targets.forEach((target) => observer.observe(target));
-
-    return () => {
-      observer.disconnect();
-      if (progressAnimationFrameRef.current !== null) {
-        window.cancelAnimationFrame(progressAnimationFrameRef.current);
-      }
-    };
-  }, [section.progressItems]);
 
   return (
-    <section ref={sectionRef} className={`relative left-1/2 right-1/2 -mx-[50vw] w-screen ${backgroundClassName}${sectionClassName}`}>
+    <section className={`relative left-1/2 right-1/2 -mx-[50vw] w-screen ${backgroundClassName}${sectionClassName}`}>
       <div className="mx-auto grid w-full max-w-[76rem] gap-10 px-5 py-12 sm:px-8 sm:py-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-center lg:gap-8 lg:ps-10 lg:pe-24 lg:py-18 xl:pe-40">
-        <div className="reveal-up max-w-[33rem]">
+        <motion.div
+          className="max-w-[33rem]"
+          initial="hidden"
+          whileInView="visible"
+          viewport={motionViewport}
+          variants={revealUpVariants}
+          transition={revealUpTransition()}
+        >
           <p className="flex items-center gap-2 text-sm font-medium text-slate-200">
             <span className="h-2 w-2 rounded-full bg-brand" aria-hidden />
             {section.eyebrow}
@@ -133,10 +132,24 @@ export function ProfessionalExpertiseSection({
               </span>
             </Link>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="reveal-up reveal-delay-1 relative mx-auto w-full max-w-[27rem] lg:mx-0 lg:ms-0 xl:max-w-[28.5rem]">
-          <div className="reveal-up reveal-delay-2 relative aspect-[315/373] overflow-hidden rounded-[20px] border border-white/10 bg-secondary shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
+        <motion.div
+          className="relative mx-auto w-full max-w-[27rem] lg:mx-0 lg:ms-0 xl:max-w-[28.5rem]"
+          initial="hidden"
+          whileInView="visible"
+          viewport={motionViewport}
+          variants={revealUpVariants}
+          transition={revealUpTransition(0.12)}
+        >
+          <motion.div
+            className="relative aspect-[315/373] overflow-hidden rounded-[20px] border border-white/10 bg-secondary shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
+            initial="hidden"
+            whileInView="visible"
+            viewport={motionViewport}
+            variants={revealUpVariants}
+            transition={revealUpTransition(0.22)}
+          >
             <Image
               src={section.imageSrc}
               alt={section.imageAlt}
@@ -145,43 +158,51 @@ export function ProfessionalExpertiseSection({
               className="object-cover object-center"
               sizes="(min-width: 1280px) 28.5rem, (min-width: 1024px) 32rem, 100vw"
             />
-          </div>
+          </motion.div>
 
-          <div className="reveal-up reveal-delay-2 mt-4 space-y-3 md:absolute md:-left-[14rem] md:bottom-6 md:mt-0 md:w-[21rem]">
+          <motion.div
+            className="mt-4 space-y-3 md:absolute md:-left-[14rem] md:bottom-6 md:mt-0 md:w-[21rem]"
+            initial="hidden"
+            whileInView="visible"
+            viewport={motionViewport}
+            variants={revealUpVariants}
+            transition={revealUpTransition(0.22)}
+          >
             {section.progressItems.map((item, index) => (
-              <article
+              <AnimatedProgressCard
                 key={item.label}
-                className={`reveal-up rounded-xl border border-white/18 bg-gradient-to-r from-[#171a22]/78 via-[#141720]/72 to-[#10131b]/66 px-3.5 py-2.5 shadow-[0_12px_24px_rgba(0,0,0,0.35)] backdrop-blur-lg ${
+                label={item.label}
+                value={item.value}
+                index={index}
+                className={`rounded-xl border border-white/18 bg-gradient-to-r from-[#171a22]/78 via-[#141720]/72 to-[#10131b]/66 px-3.5 py-2.5 shadow-[0_12px_24px_rgba(0,0,0,0.35)] backdrop-blur-lg ${
                   index === 0 ? "md:ms-10" : "md:-ms-2 md:-mt-1 md:relative md:z-10"
                 }`}
-                style={{ animationDelay: `${260 + index * 120}ms` }}
-              >
-                <div className="flex items-center justify-between gap-4 text-sm font-semibold text-white">
-                  <span>{item.label}</span>
-                  <span className="text-brand">{animatedProgressValues[index] ?? 0}%</span>
-                </div>
-                <div className="relative mt-3 h-2.5 overflow-hidden rounded-full bg-white/30">
-                  <div
-                    className="absolute inset-y-0 left-0 rounded-full bg-[#ff933a] shadow-[0_0_0_1px_rgba(255,147,58,0.22)] transition-[width] duration-300 ease-out"
-                    style={{ width: `${Math.max(0, animatedProgressValues[index] ?? 0)}%` }}
-                  />
-                  <div
-                    className="absolute inset-y-0 right-0 rounded-full"
-                    style={{ width: `${Math.max(0, 100 - (animatedProgressValues[index] ?? 0))}%` }}
-                    aria-hidden
-                  />
-                </div>
-              </article>
+              />
             ))}
-          </div>
+          </motion.div>
 
-          <aside className="reveal-up reveal-delay-3 mt-4 rounded-2xl border border-white/20 bg-gradient-to-b from-[#17191f]/65 via-[#14161d]/58 to-[#0f1116]/52 p-5 shadow-[0_20px_45px_rgba(0,0,0,0.5)] backdrop-blur-xl lg:absolute lg:right-0 lg:top-1/2 lg:mt-0 lg:w-[18rem] lg:translate-x-[85%] lg:-translate-y-1/2">
+          <motion.aside
+            className="mt-4 rounded-2xl border border-white/20 bg-gradient-to-b from-[#17191f]/65 via-[#14161d]/58 to-[#0f1116]/52 p-5 shadow-[0_20px_45px_rgba(0,0,0,0.5)] backdrop-blur-xl lg:absolute lg:right-0 lg:top-1/2 lg:mt-0 lg:w-[18rem] lg:translate-x-[85%] lg:-translate-y-1/2"
+            initial="hidden"
+            whileInView="visible"
+            viewport={motionViewport}
+            variants={revealUpVariants}
+            transition={revealUpTransition(0.32)}
+          >
             <h3 className="text-[22px] font-semibold leading-tight text-brand">{section.sideCardTitle}</h3>
             <p className="mt-3 text-sm">{section.sideCardDescription}</p>
 
             <div className="mt-5 space-y-4">
               {section.points.map((point, index) => (
-                <article key={point.title} className="reveal-up flex items-start gap-3" style={{ animationDelay: `${420 + index * 100}ms` }}>
+                <motion.article
+                  key={point.title}
+                  className="flex items-start gap-3"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={motionViewport}
+                  variants={revealUpVariants}
+                  transition={revealUpTransition(0.42 + index * 0.1)}
+                >
                   <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand/15">
                     <Image src={section.sideCardIcon} alt="" width={20} height={20} className="h-11 w-11" aria-hidden />
                   </span>
@@ -189,11 +210,11 @@ export function ProfessionalExpertiseSection({
                     <h4 className="text-[20px] font-semibold leading-none text-brand">{point.title}</h4>
                     <p className="mt-2 text-sm">{point.description}</p>
                   </div>
-                </article>
+                </motion.article>
               ))}
             </div>
-          </aside>
-        </div>
+          </motion.aside>
+        </motion.div>
       </div>
     </section>
   );
