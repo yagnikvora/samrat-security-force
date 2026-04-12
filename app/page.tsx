@@ -2,10 +2,10 @@ import { AboutShowcaseSection } from "@/components/about-showcase-section";
 import { ExperienceStatsSection } from "@/components/experience-stats-section";
 import { ProfessionalExpertiseSection } from "@/components/professional-expertise-section";
 import { ServicesShowcaseSection } from "@/components/services-showcase-section";
+import { SharedFaqSection } from "@/components/shared-faq-section";
 import { TeamShowcaseSection } from "@/components/team-showcase-section";
 import { TestimonialsSection } from "@/components/testimonials-section";
 import {
-  FaqPreviewSection,
   HeroSection,
   HomeSecurityNeedsSection,
   HomeSecuritySolutionsSection,
@@ -26,7 +26,7 @@ export default function Home() {
       <TeamShowcaseSection title="Our" highlight="Team Members" description={teamDescription} />
       <ExperienceStatsSection backgroundClassName="bg-secondary" />
       <TestimonialsSection backgroundClassName="bg-primary" />
-      <FaqPreviewSection />
+      <SharedFaqSection backgroundClassName="bg-primary" className="-mb-30 pb-15" />
     </div>
   );
 }

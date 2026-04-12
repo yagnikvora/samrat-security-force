@@ -211,6 +211,17 @@ export type TestimonialsSectionContent = {
   authorRole: string;
 };
 
+export type SharedFaqSectionContent = {
+  eyebrow: string;
+  title: string;
+  highlight: string;
+  description: string;
+  cardTitle: string;
+  cardDescription: string;
+  cardButtonLabel: string;
+  cardButtonHref: string;
+};
+
 export const siteConfig = {
   brand: {
     name: "Samrat Security",
@@ -465,6 +476,17 @@ export const siteConfig = {
     authorName: "Rajesh",
     authorRole: "Founder - Dizora",
   } as TestimonialsSectionContent,
+  sharedFaqSection: {
+    eyebrow: "FAQ's",
+    title: "Frequently Asked",
+    highlight: "Questions",
+    description:
+      "Find answers to common questions about our security services, processes, and support. We're here to help you understand how we keep you safe.",
+    cardTitle: "Have Any Question?",
+    cardDescription: "Need more information about our services or pricing? Our team is ready to assist you anytime with the right solutions.",
+    cardButtonLabel: "Contact Us",
+    cardButtonHref: "/contact",
+  } as SharedFaqSectionContent,
   faqs: [
     {
       question: "How do your security services work?",

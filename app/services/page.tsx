@@ -1,8 +1,8 @@
-import { ServicesFaqSection } from "./_components";
 import { ExperienceStatsSection } from "@/components/experience-stats-section";
 import { PageHero } from "@/components/page-hero";
 import { ProfessionalExpertiseSection } from "@/components/professional-expertise-section";
 import { ServicesShowcaseSection } from "@/components/services-showcase-section";
+import { SharedFaqSection } from "@/components/shared-faq-section";
 import { TestimonialsSection } from "@/components/testimonials-section";
 import { siteConfig } from "@/lib/site-config";
 
@@ -18,7 +18,7 @@ export default function ServicesPage() {
 
       <ServicesShowcaseSection showHeader={false} backgroundClassName="bg-secondary" />
       <ExperienceStatsSection backgroundClassName="bg-primary" />
-
+      <SharedFaqSection backgroundClassName="bg-secondary" />
       <ProfessionalExpertiseSection backgroundClassName="bg-primary" />
       <TestimonialsSection className="-mb-33 pb-33" backgroundClassName="bg-secondary" />
 
