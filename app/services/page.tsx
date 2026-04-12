@@ -3,6 +3,7 @@ import { ExperienceStatsSection } from "@/components/experience-stats-section";
 import { PageHero } from "@/components/page-hero";
 import { ProfessionalExpertiseSection } from "@/components/professional-expertise-section";
 import { ServicesShowcaseSection } from "@/components/services-showcase-section";
+import { TestimonialsSection } from "@/components/testimonials-section";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = {
@@ -19,10 +20,8 @@ export default function ServicesPage() {
       <ExperienceStatsSection backgroundClassName="bg-primary" />
 
       <ProfessionalExpertiseSection backgroundClassName="bg-primary" />
+      <TestimonialsSection className="-mb-33 pb-33" backgroundClassName="bg-secondary" />
 
-      <div className="page-container py-14 sm:py-20">
-        <ServicesFaqSection />
-      </div>
     </>
   );
 }

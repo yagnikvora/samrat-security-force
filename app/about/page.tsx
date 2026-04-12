@@ -1,7 +1,9 @@
 import { AboutIntroSection } from "./_components";
 import { ExperienceStatsSection } from "@/components/experience-stats-section";
 import { PageHero } from "@/components/page-hero";
+import { ServicesShowcaseSection } from "@/components/services-showcase-section";
 import { TeamShowcaseSection } from "@/components/team-showcase-section";
+import { TestimonialsSection } from "@/components/testimonials-section";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = {
@@ -26,6 +28,9 @@ export default function AboutPage() {
         showViewAll={false}
       />
       <ExperienceStatsSection backgroundClassName="bg-secondary" />
+      <ServicesShowcaseSection />
+      
+      <TestimonialsSection className="-mb-33 pb-33" backgroundClassName="bg-secondary" />
     </>
   );
 }

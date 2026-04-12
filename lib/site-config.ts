@@ -195,6 +195,22 @@ export type ExperienceStatsContent = {
   items: ExperienceStatItem[];
 };
 
+export type TestimonialsSectionContent = {
+  eyebrow: string;
+  title: string;
+  highlight: string;
+  titleSuffix: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+  quoteIcon: string;
+  userIcon: string;
+  rating: number;
+  quote: string;
+  authorName: string;
+  authorRole: string;
+};
+
 export const siteConfig = {
   brand: {
     name: "Samrat Security",
@@ -432,6 +448,23 @@ export const siteConfig = {
       { label: "House Keeping", value: 97 },
     ],
   } as ProfessionalExpertiseContent,
+  testimonials: {
+    eyebrow: "Testimonials",
+    title: "What Our",
+    highlight: "Clients",
+    titleSuffix: "Say About Us",
+    description:
+      "We take pride in delivering reliable and professional security services. Here is what our clients have to say about their experience working with our team.",
+    imageSrc: "/images/common/Testimonials.jpg",
+    imageAlt: "Security professional standing in front of a building",
+    quoteIcon: "/svgs/common/quates.svg",
+    userIcon: "/svgs/common/user.svg",
+    rating: 5,
+    quote:
+      "We have been working with this security team for over a year, and their professionalism is outstanding. The guards are well-trained, punctual, and always alert. Their presence has significantly improved the safety of our premises.",
+    authorName: "Rajesh",
+    authorRole: "Founder - Dizora",
+  } as TestimonialsSectionContent,
   faqs: [
     {
       question: "How do your security services work?",
