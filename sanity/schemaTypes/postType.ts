@@ -66,7 +66,20 @@ export const postType = defineType({
       name: "body",
       title: "Body",
       type: "array",
-      of: [{ type: "block" }],
+      of: [
+        { type: "block" },
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            defineField({
+              name: "alt",
+              title: "Alt text",
+              type: "string",
+            }),
+          ],
+        },
+      ],
       validation: (rule) => rule.required(),
     }),
   ],

@@ -12,7 +12,14 @@ export const blogPostBySlugQuery = `*[_type == "post" && slug.current == $slug][
   title,
   "slug": slug.current,
   excerpt,
-  body,
+  body[]{
+    ...,
+    _type == "image" => {
+      ...,
+      "imageUrl": asset->url,
+      "dimensions": asset->metadata.dimensions
+    }
+  },
   publishedAt,
   "category": coalesce(category->title, "General")
 }`;
