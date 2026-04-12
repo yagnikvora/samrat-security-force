@@ -165,6 +165,26 @@ export type ProfessionalExpertiseContent = {
   progressItems: ExpertiseProgressItem[];
 };
 
+export type TeamShowcaseItem = {
+  imageSrc: string;
+  imageAlt: string;
+};
+
+export type TeamShowcaseContent = {
+  eyebrow: string;
+  title: string;
+  highlight: string;
+  description: string;
+  homeTitle: string;
+  homeHighlight: string;
+  aboutTitle: string;
+  aboutHighlight: string;
+  sharedDescription: string;
+  viewAllLabel: string;
+  viewAllHref: string;
+  members: TeamShowcaseItem[];
+};
+
 export const siteConfig = {
   brand: {
     name: "Samrat Security",
@@ -306,6 +326,39 @@ export const siteConfig = {
       },
     ],
   } as HomeSecuritySolutionsContent,
+  teamShowcase: {
+    eyebrow: "Our Team",
+    title: "Our",
+    highlight: "Team Members",
+    description:
+      "Our team is made up of highly trained, disciplined, and dedicated security professionals who are committed to ensuring your safety.",
+    homeTitle: "Our",
+    homeHighlight: "Team Members",
+    aboutTitle: "Meet Our",
+    aboutHighlight: "Security",
+    sharedDescription:
+      "Our team is made up of highly trained, disciplined, and dedicated security professionals who are committed to ensuring your safety.",
+    viewAllLabel: "View All",
+    viewAllHref: "/team",
+    members: [
+      {
+        imageSrc: "/images/common/OurTeamMembersImg1_HomePage.png",
+        imageAlt: "Samrat Security team at an event entry red carpet",
+      },
+      {
+        imageSrc: "/images/common/OurTeamMembersImg2_HomePage.png",
+        imageAlt: "Security team members standing at a decorated venue",
+      },
+      {
+        imageSrc: "/images/common/OurTeamMembersImg3_HomePage.png",
+        imageAlt: "Two security professionals at an illuminated entrance",
+      },
+      {
+        imageSrc: "/images/common/OurTeamMembersImg4_HomePage.png",
+        imageAlt: "Security team posed outside a client building",
+      },
+    ],
+  } as TeamShowcaseContent,
   homeSecurityNeeds: {
     eyebrow: "Contact With Us",
     title: "Do You Have Any",

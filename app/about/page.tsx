@@ -1,5 +1,6 @@
 import { AboutIntroSection, AboutStatsSection } from "./_components";
 import { PageHero } from "@/components/page-hero";
+import { TeamShowcaseSection } from "@/components/team-showcase-section";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = {
@@ -7,14 +8,21 @@ export const metadata = {
 };
 
 export default function AboutPage() {
+  const teamDescription =
+    "Our team is made up of highly trained, disciplined, and dedicated security professionals who are committed to ensuring your safety.";
+
   return (
     <>
       <PageHero title={siteConfig.pageHeroes.about.title} breadcrumbs={siteConfig.pageHeroes.about.breadcrumbs} />
 
-      <div className="page-container py-14 sm:py-20">
-        <AboutIntroSection />
-        <AboutStatsSection />
-      </div>
+      <AboutIntroSection />
+      <TeamShowcaseSection
+        className="mt-2"
+        title="Meet Our"
+        highlight="Security"
+        description={teamDescription}
+        showViewAll={false}
+      />
     </>
   );
 }
