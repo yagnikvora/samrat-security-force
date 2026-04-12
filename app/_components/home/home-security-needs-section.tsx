@@ -16,7 +16,7 @@ export function HomeSecurityNeedsSection({ className }: HomeSecurityNeedsSection
 
     return (
         <section className={`bg-secondary${sectionClassName}`}>
-            <div className="mx-auto w-full max-w-[70rem] pt-25">
+            <div className="mx-auto w-full max-w-[70rem] pt-25 px-7">
                 <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-end">
                     <motion.div
                         initial="hidden"
